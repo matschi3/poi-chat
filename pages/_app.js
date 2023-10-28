@@ -1,5 +1,10 @@
-import '@/styles/globals.css'
+import GlobalStyle from "styled-components";
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </>
+  );
 }
