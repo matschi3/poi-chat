@@ -12,7 +12,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PoiCard pois={pois} />
+        {pois.map((poi) => {
+          return <PoiCard key={poi.id} poi={poi} />;
+        })}
       </main>
     </>
   );
