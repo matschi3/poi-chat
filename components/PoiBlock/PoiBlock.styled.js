@@ -46,3 +46,22 @@ export const StyledBlockHeader = styled.div`
   font-size: 16px;
   font-weight: 600;
 `;
+
+export const StyledBlockText = styled.div`
+  position: absolute;
+  width: calc(100% - 74px);
+  top: 27px;
+  left: 66px;
+  display: inline-block;
+`;
+
+export const StyledBlockLastUpdate = styled.div`
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  color: var(--color-gray3);
+  text-align: right;
+  background-color: var(--color-gray2);
+  border-radius: 4px;
+  padding: 0px 4px;
+`;
