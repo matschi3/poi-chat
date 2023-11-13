@@ -50,7 +50,7 @@ export const StyledBlockImage = styled.div`
   height: 50px;
 `;
 
-export const StyledBlockHeader = styled.div`
+export const StyledBlockHeading = styled.div`
   position: absolute;
   top: 2px;
   left: 66px;

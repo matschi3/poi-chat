@@ -3,7 +3,7 @@ import {
   StyledBlockDivider,
   StyledBlockBox,
   StyledBlockImage,
-  StyledBlockHeader,
+  StyledBlockHeading,
   StyledBlockText,
   StyledBlockLastUpdate,
 } from "./PoiBlock.styled";
@@ -20,11 +20,11 @@ export default function PoiBlock({ poi }) {
       >
         <StyledPoiBlock>
           <StyledBlockImage />
-          <StyledBlockHeader>
+          <StyledBlockHeading>
             {poi.properties.name.length < 32
               ? poi.properties.name
               : poi.properties.name.slice(0, 32) + ".."}
-          </StyledBlockHeader>
+          </StyledBlockHeading>
           <StyledBlockText>
             {poi.properties.description.length < 32
               ? poi.properties.description
