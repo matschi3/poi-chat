@@ -36,20 +36,29 @@ export default function PoiCard({ poi }) {
                 <StyledCardLi key={key}>
                   {sport}
                   <StyledCardLiDot />
-                  <StyledCardLiIndication>sports</StyledCardLiIndication>
+                  <StyledCardLiIndication>sport</StyledCardLiIndication>
                 </StyledCardLi>
                 <StyledCardDivider />
               </>
             );
           })}
         </StyledCardUl>
-        <ul>
+        <StyledCardUl>
           Geräte
           {poi.activities.devices.map((device, index) => {
             const key = `${index}${device}`;
-            return <li key={key}>{device}</li>;
+            return (
+              <>
+                <StyledCardLi key={key}>
+                  {device}
+                  <StyledCardLiDot />
+                  <StyledCardLiIndication>device</StyledCardLiIndication>
+                </StyledCardLi>
+                <StyledCardDivider />
+              </>
+            );
           })}
-        </ul>
+        </StyledCardUl>
       </StyledCardListContainer>
     </StyledPoiCard>
   );
