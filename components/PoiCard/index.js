@@ -6,6 +6,9 @@ import {
   StyledCardDescription,
   StyledCardAdress,
   StyledCardListContainer,
+  StyledCardTabSwitch,
+  StyledCardTabItem,
+  StyledCardTabItemLabel,
   StyledCardUl,
   StyledCardLi,
   StyledCardLiDot,
@@ -24,6 +27,17 @@ export default function PoiCard({ poi }) {
         </StyledCardDescription>
       </StyledCardHeadingContainer>
       <StyledCardListContainer>
+        <StyledCardTabSwitch>
+          <StyledCardTabItem>
+            <StyledCardTabItemLabel>Info</StyledCardTabItemLabel>
+          </StyledCardTabItem>
+          <StyledCardTabItem>
+            <StyledCardTabItemLabel>Chat</StyledCardTabItemLabel>
+          </StyledCardTabItem>
+          <StyledCardTabItem>
+            <StyledCardTabItemLabel>Fotos</StyledCardTabItemLabel>
+          </StyledCardTabItem>
+        </StyledCardTabSwitch>
         <StyledCardAdress>
           {poi.location.adress.street} {poi.location.adress.housenumber}
         </StyledCardAdress>
