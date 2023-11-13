@@ -7,11 +7,17 @@ import {
   StyledBlockText,
   StyledBlockLastUpdate,
 } from "./PoiBlock.styled";
+import { useRouter } from "next/router";
 
 export default function PoiBlock({ poi }) {
+  const router = useRouter();
   return (
     <>
-      <StyledBlockBox>
+      <StyledBlockBox
+        onClick={() => {
+          router.push(`/poi/${poi.id}`);
+        }}
+      >
         <StyledPoiBlock>
           <StyledBlockImage />
           <StyledBlockHeader>
