@@ -92,3 +92,25 @@ export const StyledCardDivider = styled.div`
   height: 1px;
   align-self: center;
 `;
+
+export const StyledCardTabSwitch = styled.div`
+  width: min(100% - 20px, 300px);
+  height: 54px;
+  border: 2px solid var(--color-gray2);
+  border-radius: 100px;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+`;
+
+export const StyledCardTabItem = styled.span`
+  width: calc(1 / 3 * 100%);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StyledCardTabItemLabel = styled.span`
+  font-size: var(--size-medium);
+`;
