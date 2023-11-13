@@ -6,7 +6,10 @@ import {
   StyledCardAdress,
   StyledCardListContainer,
   StyledCardUl,
+  StyledCardLi,
+  StyledCardLiDot,
 } from "./PoiCard.styled";
+import { StyledBlockDivider } from "../PoiBlock/PoiBlock.styled";
 
 export default function PoiCard({ poi }) {
   return (
@@ -21,15 +24,23 @@ export default function PoiCard({ poi }) {
       </StyledCardAdress>
       <StyledCardListContainer>
         <StyledCardUl>
-          Sportarten:
-          {poi.properties.sports.map((sport, index) => {
+          Sportarten
+          {poi.activities.sports.map((sport, index) => {
             const key = `${index}${sport}`;
-            return <li key={key}>{sport}</li>;
+            return (
+              <>
+                <StyledCardLi key={key}>
+                  {sport}
+                  <StyledCardLiDot />
+                </StyledCardLi>
+                <StyledBlockDivider />
+              </>
+            );
           })}
         </StyledCardUl>
         <ul>
-          Geräte:
-          {poi.properties.devices.map((device, index) => {
+          Geräte
+          {poi.activities.devices.map((device, index) => {
             const key = `${index}${device}`;
             return <li key={key}>{device}</li>;
           })}
