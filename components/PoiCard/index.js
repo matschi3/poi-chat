@@ -22,11 +22,11 @@ export default function PoiCard({ poi }) {
         <StyledCardDescription>
           {poi.properties.description}
         </StyledCardDescription>
+      </StyledCardHeadingContainer>
+      <StyledCardListContainer>
         <StyledCardAdress>
           {poi.location.adress.street} {poi.location.adress.housenumber}
         </StyledCardAdress>
-      </StyledCardHeadingContainer>
-      <StyledCardListContainer>
         <StyledCardUl>
           Sportarten
           {poi.activities.sports.map((sport, index) => {
