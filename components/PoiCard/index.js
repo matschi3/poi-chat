@@ -1,6 +1,7 @@
 import {
   StyledPoiCard,
   StyledCardImage,
+  StyledCardHeadingContainer,
   StyledCardHeading,
   StyledCardDescription,
   StyledCardAdress,
@@ -15,13 +16,15 @@ export default function PoiCard({ poi }) {
   return (
     <StyledPoiCard>
       <StyledCardImage />
-      <StyledCardHeading>{poi.properties.name}</StyledCardHeading>
-      <StyledCardDescription>
-        {poi.properties.description}
-      </StyledCardDescription>
-      <StyledCardAdress>
-        {poi.location.adress.street} {poi.location.adress.housenumber}
-      </StyledCardAdress>
+      <StyledCardHeadingContainer>
+        <StyledCardHeading>{poi.properties.name}</StyledCardHeading>
+        <StyledCardDescription>
+          {poi.properties.description}
+        </StyledCardDescription>
+        <StyledCardAdress>
+          {poi.location.adress.street} {poi.location.adress.housenumber}
+        </StyledCardAdress>
+      </StyledCardHeadingContainer>
       <StyledCardListContainer>
         <StyledCardUl>
           Sportarten

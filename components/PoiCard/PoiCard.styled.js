@@ -17,19 +17,26 @@ export const StyledCardImage = styled.div`
   background-color: var(--color-gray2);
 `;
 
-export const StyledCardHeading = styled.h2`
+export const StyledCardHeadingContainer = styled.div`
   position: absolute;
-  top: 125px;
+  top: 150px;
+  left: 16px;
+  width: calc(100% - 32px);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+`;
+
+export const StyledCardHeading = styled.h2`
+  margin: 2px 0;
 `;
 
 export const StyledCardDescription = styled.p`
-  position: absolute;
-  top: 160px;
+  margin: 2px 0;
 `;
 
 export const StyledCardAdress = styled.p`
-  position: absolute;
-  top: 200px;
+  margin: 2px 0;
 `;
 
 export const StyledCardListContainer = styled.div`
