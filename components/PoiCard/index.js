@@ -9,8 +9,9 @@ import {
   StyledCardUl,
   StyledCardLi,
   StyledCardLiDot,
+  StyledCardLiIndication,
+  StyledCardDivider,
 } from "./PoiCard.styled";
-import { StyledBlockDivider } from "../PoiBlock/PoiBlock.styled";
 
 export default function PoiCard({ poi }) {
   return (
@@ -35,8 +36,9 @@ export default function PoiCard({ poi }) {
                 <StyledCardLi key={key}>
                   {sport}
                   <StyledCardLiDot />
+                  <StyledCardLiIndication>sports</StyledCardLiIndication>
                 </StyledCardLi>
-                <StyledBlockDivider />
+                <StyledCardDivider />
               </>
             );
           })}
