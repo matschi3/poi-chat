@@ -75,3 +75,19 @@ export const StyledCardLiDot = styled.span`
   border-radius: 50%;
   background-color: #5db075;
 `;
+
+export const StyledCardLiIndication = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 16px;
+  width: auto;
+`;
+
+export const StyledCardDivider = styled.div`
+  width: calc(100% - 25px);
+  border-top: 1px solid var(--color-gray2);
+  box-sizing: border-box;
+  height: 1px;
+  align-self: center;
+`;
