@@ -31,51 +31,74 @@ export default function PoiCard({ poi }) {
       <StyledCardListContainer>
         <StyledCardTabSwitch>
           <StyledCardTabItem>
-            <StyledCardTabItemLabel>Info</StyledCardTabItemLabel>
+            <StyledCardTabItemLabel
+              onClick={() => {
+                setActiveTab("info");
+              }}
+            >
+              Info
+            </StyledCardTabItemLabel>
           </StyledCardTabItem>
           <StyledCardTabItem>
-            <StyledCardTabItemLabel>Chat</StyledCardTabItemLabel>
+            <StyledCardTabItemLabel
+              onClick={() => {
+                setActiveTab("chat");
+              }}
+            >
+              Chat
+            </StyledCardTabItemLabel>
           </StyledCardTabItem>
           <StyledCardTabItem>
-            <StyledCardTabItemLabel>Fotos</StyledCardTabItemLabel>
+            <StyledCardTabItemLabel
+              onClick={() => {
+                setActiveTab("image");
+              }}
+            >
+              Fotos
+            </StyledCardTabItemLabel>
           </StyledCardTabItem>
         </StyledCardTabSwitch>
-
-        <StyledCardAdress>
-          {poi.location.adress.street} {poi.location.adress.housenumber}
-        </StyledCardAdress>
-        <StyledCardUl>
-          Sportarten
-          {poi.activities.sports.map((sport, index) => {
-            const key = `${index}${sport}`;
-            return (
-              <>
-                <StyledCardLi key={key}>
-                  {sport}
-                  <StyledCardLiDot />
-                  <StyledCardLiIndication>sport</StyledCardLiIndication>
-                </StyledCardLi>
-                <StyledCardDivider />
-              </>
-            );
-          })}
-        </StyledCardUl>
-        <StyledCardUl>
-          Geräte
-          {poi.activities.devices.map((device, index) => {
-            const key = `${index}${device}`;
-            return (
-              <>
-                <StyledCardLi key={key}>
-                  {device}
-                  <StyledCardLiDot />
-                  <StyledCardLiIndication>device</StyledCardLiIndication>
-                </StyledCardLi>
-                <StyledCardDivider />
-              </>
-            );
-          })}
-        </StyledCardUl>
+        {activeTab === "info" && (
+          <>
+            <StyledCardAdress>
+              {poi.location.adress.street} {poi.location.adress.housenumber}
+            </StyledCardAdress>
+            <StyledCardUl>
+              Sportarten
+              {poi.activities.sports.map((sport, index) => {
+                const key = `${index}${sport}`;
+                return (
+                  <>
+                    <StyledCardLi key={key}>
+                      {sport}
+                      <StyledCardLiDot />
+                      <StyledCardLiIndication>sport</StyledCardLiIndication>
+                    </StyledCardLi>
+                    <StyledCardDivider />
+                  </>
+                );
+              })}
+            </StyledCardUl>
+            <StyledCardUl>
+              Geräte
+              {poi.activities.devices.map((device, index) => {
+                const key = `${index}${device}`;
+                return (
+                  <>
+                    <StyledCardLi key={key}>
+                      {device}
+                      <StyledCardLiDot />
+                      <StyledCardLiIndication>device</StyledCardLiIndication>
+                    </StyledCardLi>
+                    <StyledCardDivider />
+                  </>
+                );
+              })}
+            </StyledCardUl>
+          </>
+        )}
+        {activeTab === "chat" && <span>Chat is here</span>}
+        {activeTab === "image" && <span>Fotos are here</span>}
       </StyledCardListContainer>
     </StyledPoiCard>
   );
