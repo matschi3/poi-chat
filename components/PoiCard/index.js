@@ -1,5 +1,6 @@
 import {
   StyledPoiCard,
+  StyledBackground,
   StyledCardImage,
   StyledCardHeadingContainer,
   StyledCardHeading,
@@ -21,6 +22,7 @@ export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
   return (
     <StyledPoiCard>
+      <StyledBackground />
       <StyledCardImage />
       <StyledCardHeadingContainer>
         <StyledCardHeading>{poi.properties.name}</StyledCardHeading>

@@ -4,17 +4,26 @@ export const StyledPoiCard = styled.div`
   position: relative;
   top: 60px;
   width: 100%;
-  border: solid 1px black;
+  border-top: solid 1px black;
 `;
 
 export const StyledCardImage = styled.div`
   position: absolute;
   top: 10px;
-  left: calc(50% - 75px);
-  width: 150px;
+  left: calc(50% - 100px);
+  width: 200px;
   height: 150px;
   border-radius: 55px;
   background-color: var(--color-gray2);
+  border: solid 3px var(--color-white);
+`;
+
+export const StyledBackground = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 135px;
+  background-color: var(--color-primary);
 `;
 
 export const StyledCardHeadingContainer = styled.div`
