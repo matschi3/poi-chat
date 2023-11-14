@@ -98,6 +98,7 @@ export const StyledCardTabSwitch = styled.div`
   height: 54px;
   border: 2px solid var(--color-gray2);
   border-radius: 100px;
+  background-color: var(--color-gray2);
   align-self: center;
   display: flex;
   justify-content: center;
@@ -109,8 +110,16 @@ export const StyledCardTabItem = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 100px;
   .isActiveTab {
     color: var(--color-primary);
+    background-color: var(--color-white);
+    width: 100%;
+    height: 50px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
