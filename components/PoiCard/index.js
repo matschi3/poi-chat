@@ -32,6 +32,7 @@ export default function PoiCard({ poi }) {
         <StyledCardTabSwitch>
           <StyledCardTabItem>
             <StyledCardTabItemLabel
+              className={activeTab === "info" ? "isActiveTab" : ""}
               onClick={() => {
                 setActiveTab("info");
               }}
@@ -41,6 +42,7 @@ export default function PoiCard({ poi }) {
           </StyledCardTabItem>
           <StyledCardTabItem>
             <StyledCardTabItemLabel
+              className={activeTab === "chat" ? "isActiveTab" : ""}
               onClick={() => {
                 setActiveTab("chat");
               }}
@@ -50,6 +52,7 @@ export default function PoiCard({ poi }) {
           </StyledCardTabItem>
           <StyledCardTabItem>
             <StyledCardTabItemLabel
+              className={activeTab === "image" ? "isActiveTab" : ""}
               onClick={() => {
                 setActiveTab("image");
               }}
