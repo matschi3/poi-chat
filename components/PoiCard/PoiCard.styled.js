@@ -109,6 +109,9 @@ export const StyledCardTabItem = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  .isActiveTab {
+    color: var(--color-primary);
+  }
 `;
 
 export const StyledCardTabItemLabel = styled.span`
