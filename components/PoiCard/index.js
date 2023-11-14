@@ -15,8 +15,10 @@ import {
   StyledCardLiIndication,
   StyledCardDivider,
 } from "./PoiCard.styled";
+import { useState } from "react";
 
 export default function PoiCard({ poi }) {
+  const [activeTab, setActiveTab] = useState("info");
   return (
     <StyledPoiCard>
       <StyledCardImage />
@@ -38,6 +40,7 @@ export default function PoiCard({ poi }) {
             <StyledCardTabItemLabel>Fotos</StyledCardTabItemLabel>
           </StyledCardTabItem>
         </StyledCardTabSwitch>
+
         <StyledCardAdress>
           {poi.location.adress.street} {poi.location.adress.housenumber}
         </StyledCardAdress>
