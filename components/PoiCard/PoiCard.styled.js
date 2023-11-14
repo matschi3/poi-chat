@@ -95,7 +95,7 @@ export const StyledCardDivider = styled.div`
 
 export const StyledCardTabSwitch = styled.div`
   width: min(100% - 20px, 300px);
-  height: 54px;
+  height: 44px;
   border: 2px solid var(--color-gray2);
   border-radius: 100px;
   background-color: var(--color-gray2);
@@ -106,7 +106,7 @@ export const StyledCardTabSwitch = styled.div`
 
 export const StyledCardTabItem = styled.span`
   width: calc(1 / 3 * 100%);
-  height: 50px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,7 +115,7 @@ export const StyledCardTabItem = styled.span`
     color: var(--color-primary);
     background-color: var(--color-white);
     width: 100%;
-    height: 50px;
+    height: 40px;
     border-radius: 100px;
     display: flex;
     align-items: center;
