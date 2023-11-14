@@ -22,6 +22,7 @@ export default createGlobalStyle`
 
     --size-mediumsmall: 14px;
     --size-medium: 16px;
+    --size-mediumplus: 18px;
     --size-large: 30px;
   }
 

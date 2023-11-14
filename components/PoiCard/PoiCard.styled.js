@@ -124,5 +124,5 @@ export const StyledCardTabItem = styled.span`
 `;
 
 export const StyledCardTabItemLabel = styled.span`
-  font-size: var(--size-medium);
+  font-size: var(--size-mediumplus);
 `;
