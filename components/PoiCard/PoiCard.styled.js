@@ -45,7 +45,8 @@ export const StyledCardDescription = styled.p`
 `;
 
 export const StyledCardAdress = styled.p`
-  margin: 2px 0;
+  margin: 6px 0;
+  text-align: center;
 `;
 
 export const StyledCardListContainer = styled.div`

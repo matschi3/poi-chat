@@ -66,7 +66,11 @@ export default function PoiCard({ poi }) {
         {activeTab === "info" && (
           <>
             <StyledCardAdress>
-              {poi.location.adress.street} {poi.location.adress.housenumber}
+              {poi.location.adress.street} {poi.location.adress.housenumber},{" "}
+              {poi.location.adress.postcode} {poi.location.adress.city}
+            </StyledCardAdress>
+            <StyledCardAdress>
+              {poi.location.hint ? poi.location.hint : ""}
             </StyledCardAdress>
             <StyledCardUl>
               Sportarten
@@ -79,7 +83,7 @@ export default function PoiCard({ poi }) {
                       <StyledCardLiDot />
                       <StyledCardLiIndication>sport</StyledCardLiIndication>
                     </StyledCardLi>
-                    <StyledCardDivider />
+                    <StyledCardDivider key={"divider" + key} />
                   </>
                 );
               })}
@@ -95,7 +99,7 @@ export default function PoiCard({ poi }) {
                       <StyledCardLiDot />
                       <StyledCardLiIndication>device</StyledCardLiIndication>
                     </StyledCardLi>
-                    <StyledCardDivider />
+                    <StyledCardDivider key={"divider" + key} />
                   </>
                 );
               })}
