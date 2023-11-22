@@ -1,5 +1,7 @@
 import Head from "next/head";
-import PoiCard from "@/components/PoiCard";
+import { pois } from "@/lib/pois";
+import PoiBlock from "@/components/PoiBlock/index.js";
+import { StyledBlockContainer } from "@/components/PoiBlock/PoiBlock.styled";
 
 export default function Home() {
   return (
@@ -11,7 +13,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <PoiCard />
+        <StyledBlockContainer>
+          {pois.map((poi) => {
+            return <PoiBlock key={poi.id} poi={poi} />;
+          })}
+        </StyledBlockContainer>
       </main>
     </>
   );
