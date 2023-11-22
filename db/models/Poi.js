@@ -11,7 +11,6 @@ const poiSchema = new Schema({
   activities: { type: [Schema.Types.ObjectId], ref: "Activitiy" },
   assets: { type: [Schema.Types.ObjectId], ref: "Asset" },
   events: { type: [Schema.Types.ObjectId], ref: "Event" },
-  createdBy: { type: [Schema.Types.ObjectId], ref: "User" },
 });
 
 const Poi = mongoose.models.Poi || mongoose.model("Poi", poiSchema);
