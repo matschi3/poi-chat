@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
-import "./xxxxx.js";
+import "./Category.js";
+import "./Location.js";
+import "./Property.js";
+import "./Activity.js";
+import "./Asset.js";
+import "./Event.js";
 
 const { Schema } = mongoose;
 
