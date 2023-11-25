@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import "./Geometry.js";
+import "./Adress.js";
 
 const Schema = mongoose.Schema;
 
