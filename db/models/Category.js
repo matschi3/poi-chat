@@ -4,6 +4,9 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
   uuid: { type: String, required: true },
+  name: { type: String, required: true },
+  description: { type: String, required: true },
+  assets: { type: [Schema.Types.ObjectId], ref: "Asset" },
 });
 
 const Category =
