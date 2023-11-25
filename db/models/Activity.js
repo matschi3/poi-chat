@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import "./Device.js";
+import "./Sport.js";
 
 const Schema = mongoose.Schema;
 
