@@ -4,10 +4,37 @@ import Poi from "../../../db/models/Poi.js";
 export default async function handler(request, response) {
   await dbConnect();
   if (request.method === "GET") {
-    const pois = await Poi.find({}).populate({
-      path: "parts",
-      populate: { path: "category" },
-    });
+    const pois = await Poi.find({})
+      .populate("categories")
+      .populate({
+        path: "categories",
+        populate: { path: "category" },
+      })
+      .populate("location")
+      .populate({
+        path: "location",
+        populate: { path: "location" },
+      })
+      .populate("properties")
+      .populate({
+        path: "properties",
+        populate: { path: "properties" },
+      })
+      .populate("activities")
+      .populate({
+        path: "activities",
+        populate: { path: "activities" },
+      })
+      .populate("assets")
+      .populate({
+        path: "assets",
+        populate: { path: "assets" },
+      })
+      .populate("events")
+      .populate({
+        path: "events",
+        populate: { path: "events" },
+      });
     if (!pois) {
       return response.status(404).json({ message: "No POIs found" });
     }
