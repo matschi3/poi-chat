@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import "./Asset.js";
 
 const Schema = mongoose.Schema;
 
