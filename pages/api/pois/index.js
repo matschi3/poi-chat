@@ -5,15 +5,13 @@ export default async function handler(request, response) {
   await dbConnect();
   if (request.method === "GET") {
     const pois = await Poi.find({})
-      .populate("categories")
       .populate({
         path: "categories",
-        populate: { path: "category" },
+        populate: { path: "assets" },
       })
-      .populate("location")
       .populate({
         path: "location",
-        populate: { path: "location" },
+        populate: [{ path: "geometry" }, { path: "address" }],
       })
       .populate("properties")
       .populate({
