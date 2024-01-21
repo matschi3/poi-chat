@@ -5,7 +5,7 @@ export default function CreatePoiPage() {
     console.log(newPoi);
     const response = await fetch("../api/pois", {
       method: "POST",
-      headers: { "Content-Type": "aplication/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newPoi),
     });
     if (response.ok) {
