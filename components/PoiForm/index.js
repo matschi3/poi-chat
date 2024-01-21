@@ -10,5 +10,10 @@ export default function PoiForm({ onSubmit, formName }) {
 
     onSubmit(newPoi);
   }
-  return <></>;
+  return (
+    <FormContainer
+      aria-labelledby={formName}
+      onSubmit={handleSubmit}
+    ></FormContainer>
+  );
 }
