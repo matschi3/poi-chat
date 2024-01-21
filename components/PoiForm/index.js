@@ -5,6 +5,7 @@ import {
   Input,
   Select,
 } from "./PoiForm.styled";
+import { v4 as uuidv4 } from "uuid";
 
 export default function PoiForm({ onSubmit, formName }) {
   function handleSubmit(event) {
@@ -12,10 +13,68 @@ export default function PoiForm({ onSubmit, formName }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    const newPoi = {};
-
+    /* DummyData: location.geometry, activities, assets, events, properties.devicesAccessible, properties.communityHint */
+    const newPoi = {
+      id: uuidv4(),
+      type: data.type,
+      location: {
+        geometry: {
+          type: "point",
+          coordinates: [7.0973271268, 50.7203277288],
+        },
+        adress: {
+          street: data.street,
+          housenumber: data.housenumber,
+          postcode: data.postcode,
+          city: data.city,
+        },
+        hint: data.hint ? data.hint : "",
+      },
+      properties: {
+        name: data.name,
+        description: data.description,
+        locationAccessible: data.locationAccessible,
+        devicesAccessible: [],
+        communityHint:
+          "Servicenummer der Stadt x für Spiel und Sportplätze: +49 228 000 000",
+      },
+      activities: {
+        devices: [
+          "rutsche",
+          "Klettergerüst",
+          "pull-up Stange",
+          "TrimmDichPfad",
+          "Tennisfeld",
+          "basketballplatz",
+        ],
+        sports: [
+          "basketball",
+          "tennis",
+          "calisthenics",
+          "endurance",
+          "power",
+          "mobility",
+        ],
+      },
+      assets: {
+        mainImage: "",
+        images: [],
+      },
+      events: {
+        date: "August 19, 2023 13:15:30",
+        dateEnd: "August 19, 2023 15:15:30",
+        title: "Basketball",
+        description:
+          "Wir spielen Basketball. Sind zu dritt und suchen noch Mitspieler",
+        createdBy: {
+          name: "testuser",
+          userId: "b1761545-2b75-48d3-b555-22b0108261803",
+        },
+      },
+    };
     onSubmit(newPoi);
   }
+
   return (
     <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
       {/* type */}
