@@ -19,6 +19,52 @@ export default function PoiForm({ onSubmit, formName }) {
         <option value="playground">Spielplatz</option>
       </Select>
       {/* location */}
+      <fieldset>
+        <legend>Standort - Adresse</legend>
+        <Label htmlFor="adress-street">Straße</Label>
+        <Input
+          id="adress-street"
+          name="street"
+          type="text"
+          maxLength={20}
+          required
+        />
+        <Label htmlFor="adress-housenumber">Haus Nr.</Label>
+        <Input
+          id="adress-housenumber"
+          name="housenumber"
+          type="number"
+          maxLength={3}
+          required
+        />
+        <Label htmlFor="adress-postcode">PLZ</Label>
+        <Input
+          id="adress-postcode"
+          name="postcode"
+          type="number"
+          minLength={4}
+          maxLength={5}
+          required
+        />
+        <Label htmlFor="adress-city">Stadt</Label>
+        <Input
+          id="adress-city"
+          name="city"
+          type="text"
+          maxLength={20}
+          required
+        />
+        <Label htmlFor="location-hint">
+          Hinweis zum auffinden der Location
+        </Label>
+        <Input
+          id="location-hint"
+          name="hint"
+          type="text"
+          maxLength={50}
+          placeholder="z.B. Eingang über Hofdurchgang ecke Gartenstraße"
+        />
+      </fieldset>
       {/* properties */}
       {/* activities */}
       {/* assets */}
