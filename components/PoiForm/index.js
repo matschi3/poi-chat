@@ -19,11 +19,14 @@ export default function PoiForm({ onSubmit, formName }) {
   return (
     <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
       {/* type */}
-      <Label htmlFor="type">Typ</Label>
-      <Select name="type" id="type" required>
-        <option value="sports">Sportplatz</option>
-        <option value="playground">Spielplatz</option>
-      </Select>
+      <Fieldset>
+        <legend>Was für ein POI möchtest du hinzufügen?</legend>
+        <Label htmlFor="type">Typ</Label>
+        <Select name="type" id="type" required>
+          <option value="sports">Sportplatz</option>
+          <option value="playground">Spielplatz</option>
+        </Select>
+      </Fieldset>
       {/* location */}
       <Fieldset>
         <legend>Standort - Adresse</legend>
@@ -72,8 +75,42 @@ export default function PoiForm({ onSubmit, formName }) {
         />
       </Fieldset>
       {/* properties */}
-      {/* activities */}
-      {/* assets */}
+      <Fieldset>
+        <legend>Beschreibung</legend>
+        <Label htmlFor="properties-name">Name der Location</Label>
+        <Input
+          id="properties-name"
+          name="name"
+          type="text"
+          maxLength={20}
+          placeholder="z.B. Spielplatz Zentrum"
+          required
+        />
+        <Label htmlFor="properties-description">
+          Beschreibung der Location
+        </Label>
+        <Input
+          id="properties-description"
+          name="description"
+          type="text"
+          maxLength={50}
+          placeholder="z.B. schöner Platz unter Bäumen"
+        />
+        <Label htmlFor="properties-locationAccessible">
+          Zugänglich für Bewegungseingeschränkte Personen?
+        </Label>
+        <Select
+          id="properties-locationAccessible"
+          name="locationAccessible"
+          required
+        >
+          <option value={false}>nicht zugänglich</option>
+          <option value={true}>zugänglich</option>
+        </Select>
+      </Fieldset>
+      {/* activities, choose from predefined devices+sports, added on another form */}
+      {/* assets, containing img-upload */}
+      <button type="submit">POI hinzufügen</button>
     </FormContainer>
   );
 }
