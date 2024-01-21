@@ -16,7 +16,7 @@ export default function PoiForm({ onSubmit, formName }) {
     /* DummyData: location.geometry, activities, assets, events, properties.devicesAccessible, properties.communityHint */
     const newPoi = {
       uuid: uuidv4(),
-      type: data.type,
+      category: data.category,
       location: {
         geometry: {
           type: "point",
@@ -80,8 +80,8 @@ export default function PoiForm({ onSubmit, formName }) {
       {/* type */}
       <Fieldset>
         <legend>Was für ein POI möchtest du hinzufügen?</legend>
-        <Label htmlFor="type">Typ</Label>
-        <Select name="type" id="type" required>
+        <Label htmlFor="category">Kategorie</Label>
+        <Select id="category" name="category" required>
           <option value="sports">Sportplatz</option>
           <option value="playground">Spielplatz</option>
         </Select>
