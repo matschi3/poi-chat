@@ -77,7 +77,7 @@ export default function PoiForm({ onSubmit, formName }) {
 
   return (
     <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
-      {/* type */}
+      {/* category */}
       <Fieldset>
         <legend>Was für ein POI möchtest du hinzufügen?</legend>
         <Label htmlFor="category">Kategorie</Label>
