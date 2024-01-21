@@ -1,4 +1,10 @@
-import { FormContainer, Label, Input, Select } from "./PoiForm.styled";
+import {
+  FormContainer,
+  Fieldset,
+  Label,
+  Input,
+  Select,
+} from "./PoiForm.styled";
 
 export default function PoiForm({ onSubmit, formName }) {
   function handleSubmit(event) {
@@ -19,7 +25,7 @@ export default function PoiForm({ onSubmit, formName }) {
         <option value="playground">Spielplatz</option>
       </Select>
       {/* location */}
-      <fieldset>
+      <Fieldset>
         <legend>Standort - Adresse</legend>
         <Label htmlFor="adress-street">Straße</Label>
         <Input
@@ -64,7 +70,7 @@ export default function PoiForm({ onSubmit, formName }) {
           maxLength={50}
           placeholder="z.B. Eingang über Hofdurchgang ecke Gartenstraße"
         />
-      </fieldset>
+      </Fieldset>
       {/* properties */}
       {/* activities */}
       {/* assets */}
