@@ -40,9 +40,9 @@ export default async function handler(request, response) {
   }
   if (request.method === "POST") {
     try {
-      const newItem = request.body;
-      await Item.create(newItem);
-      return response.status(201).json({ status: "Item created." });
+      const newPoi = request.body;
+      await Poi.create(newPoi);
+      return response.status(201).json({ status: "POI created." });
     } catch (error) {
       response.status(400).json({ error: error.message });
     }
