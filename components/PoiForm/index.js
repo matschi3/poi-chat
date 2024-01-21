@@ -15,7 +15,7 @@ export default function PoiForm({ onSubmit, formName }) {
 
     /* DummyData: location.geometry, activities, assets, events, properties.devicesAccessible, properties.communityHint */
     const newPoi = {
-      id: uuidv4(),
+      uuid: uuidv4(),
       type: data.type,
       location: {
         geometry: {
