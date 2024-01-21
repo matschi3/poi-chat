@@ -1,3 +1,3 @@
-export default function CreatePoi() {
+export default function CreatePoiPage() {
   return <></>;
 }
