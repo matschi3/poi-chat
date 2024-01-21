@@ -2,7 +2,8 @@ import PoiForm from "@/components/PoiForm/index.js";
 
 export default function CreatePoiPage() {
   async function createPoi(newPoi) {
-    const response = await fetch("api/pois", {
+    console.log(newPoi);
+    const response = await fetch("../api/pois", {
       method: "POST",
       headers: { "Content-Type": "aplication/json" },
       body: JSON.stringify(newPoi),
