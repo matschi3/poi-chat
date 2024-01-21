@@ -1,3 +1,5 @@
+import PoiForm from "@/components/PoiForm/index.js";
+
 export default function CreatePoiPage() {
   async function createPoi(newPoi) {
     const response = await fetch("api/pois", {
@@ -10,5 +12,5 @@ export default function CreatePoiPage() {
     }
   }
 
-  return <></>;
+  return <PoiForm onSubmit={createPoi} formName="create-poi" />;
 }
