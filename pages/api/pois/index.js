@@ -11,28 +11,24 @@ export default async function handler(request, response) {
       })
       .populate({
         path: "location",
-        populate: [{ path: "geometry" }, { path: "address" }],
+        populate: [{ path: "geometry" }, { path: "adress" }],
       })
       .populate("properties")
       .populate({
         path: "properties",
-        populate: { path: "properties" },
+        populate: { path: "devicesAccessible" },
       })
       .populate("activities")
       .populate({
         path: "activities",
-        populate: { path: "activities" },
+        populate: [{ path: "devices" }, { path: "sports" }],
       })
       .populate("assets")
       .populate({
         path: "assets",
-        populate: { path: "assets" },
+        populate: { path: "images" },
       })
-      .populate("events")
-      .populate({
-        path: "events",
-        populate: { path: "events" },
-      });
+      .populate("events");
     if (!pois) {
       return response.status(404).json({ message: "No POIs found" });
     }
