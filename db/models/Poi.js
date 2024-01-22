@@ -12,8 +12,8 @@ const poiSchema = new Schema({
   uuid: { type: String, required: true },
   categories: { type: [Schema.Types.ObjectId], ref: "Category" },
   location: { type: [Schema.Types.ObjectId], ref: "Location" },
-  properties: { type: [Schema.Types.ObjectId], ref: "Propertiy" },
-  activities: { type: [Schema.Types.ObjectId], ref: "Activitiy" },
+  properties: { type: [Schema.Types.ObjectId], ref: "Property" },
+  activities: { type: [Schema.Types.ObjectId], ref: "Activity" },
   assets: { type: [Schema.Types.ObjectId], ref: "Asset" },
   events: { type: [Schema.Types.ObjectId], ref: "Event" },
 });
