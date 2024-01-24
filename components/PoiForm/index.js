@@ -171,6 +171,9 @@ export default function PoiForm({ onSubmit, formName }) {
           type="number"
           min={0}
           max={99}
+          onChange={(event) => {
+            setEnteredSeating(event.target.value);
+          }}
         />
         <Label htmlFor="properties-locationAccessible">
           Zugänglich für Bewegungseingeschränkte Personen?
