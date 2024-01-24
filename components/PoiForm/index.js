@@ -163,6 +163,14 @@ export default function PoiForm({ onSubmit, formName }) {
           maxLength={50}
           placeholder="z.B. schöner Platz unter Bäumen"
         />
+        <Label htmlFor="properties-seating">Sitzgelegenheiten</Label>
+        <Input
+          id="properties-seating"
+          name="seating"
+          type="number"
+          min={0}
+          max={99}
+        />
         <Label htmlFor="properties-locationAccessible">
           Zugänglich für Bewegungseingeschränkte Personen?
         </Label>
