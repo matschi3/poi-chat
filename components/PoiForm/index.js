@@ -175,6 +175,16 @@ export default function PoiForm({ onSubmit, formName }) {
             setEnteredSeating(event.target.value);
           }}
         />
+        <Label htmlFor="properties-seatingBackrest">
+          Sitzgelegenheiten mit Rückenlehne
+        </Label>
+        <Input
+          id="properties-seatingBackrest"
+          name="seatingBackrest"
+          type="number"
+          min={0}
+          max={enteredSeating}
+        />
         <Label htmlFor="properties-locationAccessible">
           Zugänglich für Bewegungseingeschränkte Personen?
         </Label>
