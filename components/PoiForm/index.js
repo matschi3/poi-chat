@@ -6,23 +6,39 @@ import {
   Select,
 } from "./PoiForm.styled";
 import { v4 as uuidv4 } from "uuid";
+import { useState, useEffect } from "react";
 
 export default function PoiForm({ onSubmit, formName }) {
+  const [fetchedCategories, setFetchedCategories] = useState([]);
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const response = await fetch("/api/categories");
+      const data = await response.json();
+      setFetchedCategories(data);
+    }
+    fetchCategories();
+  }, []);
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    /* DummyData: location.geometry, activities, assets, events, properties.devicesAccessible, properties.communityHint */
     const newPoi = {
       uuid: uuidv4(),
-      category: data.category,
+      categories: fetchedCategories.find((category) => {
+        category.uuid === data.category;
+        return category;
+      }),
       location: {
         geometry: {
+          uuid: uuidv4(),
           type: "point",
           coordinates: [7.0973271268, 50.7203277288],
         },
         adress: {
+          uuid: uuidv4(),
           street: data.street,
           housenumber: data.housenumber,
           postcode: data.postcode,
@@ -31,48 +47,20 @@ export default function PoiForm({ onSubmit, formName }) {
         hint: data.hint ? data.hint : "",
       },
       properties: {
+        uuid: uuidv4(),
         name: data.name,
         description: data.description,
+        seating: 6,
+        seatingBackrest: 3,
+        garbagecan: 2,
         locationAccessible: data.locationAccessible,
         devicesAccessible: [],
         communityHint:
           "Servicenummer der Stadt x für Spiel und Sportplätze: +49 228 000 000",
       },
-      activities: {
-        devices: [
-          "rutsche",
-          "Klettergerüst",
-          "pull-up Stange",
-          "TrimmDichPfad",
-          "Tennisfeld",
-          "basketballplatz",
-        ],
-        sports: [
-          "basketball",
-          "tennis",
-          "calisthenics",
-          "endurance",
-          "power",
-          "mobility",
-        ],
-      },
-      assets: {
-        mainImage: "",
-        images: [],
-      },
-      events: {
-        date: "August 19, 2023 13:15:30",
-        dateEnd: "August 19, 2023 15:15:30",
-        title: "Basketball",
-        description:
-          "Wir spielen Basketball. Sind zu dritt und suchen noch Mitspieler",
-        createdBy: {
-          name: "testuser",
-          userId: "b1761545-2b75-48d3-b555-22b0108261803",
-        },
-      },
     };
-    onSubmit(newPoi);
+    /* onSubmit(newPoi); */
+    console.log(newPoi);
   }
 
   return (
@@ -82,8 +70,13 @@ export default function PoiForm({ onSubmit, formName }) {
         <legend>Was für ein POI möchtest du hinzufügen?</legend>
         <Label htmlFor="category">Kategorie</Label>
         <Select id="category" name="category" required>
-          <option value="sports">Sportplatz</option>
-          <option value="playground">Spielplatz</option>
+          {fetchedCategories.map((category) => {
+            return (
+              <option key={category.uuid} value={category.uuid}>
+                {category.name}
+              </option>
+            );
+          })}
         </Select>
       </Fieldset>
       {/* location */}
