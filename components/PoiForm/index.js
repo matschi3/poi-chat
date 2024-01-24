@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 
 export default function PoiForm({ onSubmit, formName }) {
   const [fetchedCategories, setFetchedCategories] = useState([]);
+  const [geometryArray, setGeometryArray] = useState(null);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -19,6 +20,12 @@ export default function PoiForm({ onSubmit, formName }) {
     }
     fetchCategories();
   }, []);
+
+  function getCurrentPosition() {
+    const geolocation = navigator.geolocation.getCurrentPosition((position) => {
+      setGeometryArray([position.coords.longitude, position.coords.latitude]);
+    });
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -32,11 +39,14 @@ export default function PoiForm({ onSubmit, formName }) {
         return category;
       }),
       location: {
-        geometry: {
-          uuid: uuidv4(),
-          type: "point",
-          coordinates: [7.0973271268, 50.7203277288],
-        },
+        geometry:
+          geometryArray !== null
+            ? {
+                uuid: uuidv4(),
+                type: "point",
+                coordinates: geometryArray,
+              }
+            : {},
         adress: {
           uuid: uuidv4(),
           street: data.street,
@@ -82,6 +92,11 @@ export default function PoiForm({ onSubmit, formName }) {
       {/* location */}
       <Fieldset>
         <legend>Standort - Adresse</legend>
+        <button onClick={getCurrentPosition}>
+          {geometryArray === null
+            ? "Aktuellen Standort verwenden"
+            : "Aktueller Standort erfolgreich eingetragen!"}
+        </button>
         <Label htmlFor="adress-street">Straße</Label>
         <Input
           id="adress-street"
