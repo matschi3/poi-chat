@@ -93,7 +93,12 @@ export default function PoiForm({ onSubmit, formName }) {
       {/* location */}
       <Fieldset>
         <legend>Standort - Adresse</legend>
-        <button onClick={getCurrentPosition}>
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            getCurrentPosition();
+          }}
+        >
           {geometryArray === null
             ? "Aktuellen Standort verwenden"
             : "Aktueller Standort erfolgreich eingetragen!"}
