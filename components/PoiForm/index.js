@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 export default function PoiForm({ onSubmit, formName }) {
   const [fetchedCategories, setFetchedCategories] = useState([]);
   const [geometryArray, setGeometryArray] = useState(null);
+  const [enteredSeating, setEnteredSeating] = useState(0);
 
   useEffect(() => {
     async function fetchCategories() {
