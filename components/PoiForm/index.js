@@ -185,6 +185,16 @@ export default function PoiForm({ onSubmit, formName }) {
           min={0}
           max={enteredSeating}
         />
+        <Label htmlFor="properties-garbagecan">
+          Anzahl vorhandener Mülleimer
+        </Label>
+        <Input
+          id="properties-garbagecan"
+          name="garbagecan"
+          type="number"
+          min={0}
+          max={99}
+        />
         <Label htmlFor="properties-locationAccessible">
           Zugänglich für Bewegungseingeschränkte Personen?
         </Label>
