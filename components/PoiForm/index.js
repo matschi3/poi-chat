@@ -61,9 +61,9 @@ export default function PoiForm({ onSubmit, formName }) {
         uuid: uuidv4(),
         name: data.name,
         description: data.description,
-        seating: data.seating,
-        seatingBackrest: 3,
-        garbagecan: 2,
+        seating: enteredSeating,
+        seatingBackrest: data.seatingBackrest,
+        garbagecan: data.garbagecan,
         locationAccessible: data.locationAccessible,
         devicesAccessible: [],
         communityHint:
