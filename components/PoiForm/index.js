@@ -164,7 +164,9 @@ export default function PoiForm({ onSubmit, formName }) {
           maxLength={50}
           placeholder="z.B. schöner Platz unter Bäumen"
         />
-        <Label htmlFor="properties-seating">Sitzgelegenheiten</Label>
+        <Label htmlFor="properties-seating">
+          Anzahl vorhandener Sitzgelegenheiten
+        </Label>
         <Input
           id="properties-seating"
           name="seating"
@@ -176,7 +178,7 @@ export default function PoiForm({ onSubmit, formName }) {
           }}
         />
         <Label htmlFor="properties-seatingBackrest">
-          Sitzgelegenheiten mit Rückenlehne
+          davon Sitzgelegenheiten mit Rückenlehne
         </Label>
         <Input
           id="properties-seatingBackrest"
