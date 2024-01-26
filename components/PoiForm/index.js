@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 
 export default function PoiForm({ onSubmit, formName }) {
   const [fetchedCategories, setFetchedCategories] = useState([]);
+  const [fetchedDevices, setFetchedDevices] = useState([]);
   const [geometryArray, setGeometryArray] = useState(null);
   const [enteredSeating, setEnteredSeating] = useState(0);
 
@@ -26,7 +27,7 @@ export default function PoiForm({ onSubmit, formName }) {
     async function fetchDevices() {
       const response = await fetch("/api/devices");
       const data = await response.json();
-      console.log(data);
+      setFetchedDevices(data);
     }
     fetchDevices();
   }, []);
