@@ -28,6 +28,7 @@ export default function PoiForm({ onSubmit, formName }) {
       const data = await response.json();
       console.log(data);
     }
+    fetchDevices();
   }, []);
 
   function getCurrentPosition() {
