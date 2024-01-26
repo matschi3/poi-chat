@@ -35,40 +35,50 @@ export default function PoiForm({ onSubmit, formName }) {
 
     const newPoi = {
       uuid: uuidv4(),
-      categories: fetchedCategories.find((category) => {
-        category.uuid === data.category;
-        return category;
-      }),
-      location: {
-        geometry:
-          geometryArray !== null
-            ? {
-                uuid: uuidv4(),
-                type: "point",
-                coordinates: geometryArray,
-              }
-            : {},
-        adress: {
-          uuid: uuidv4(),
-          street: data.street,
-          housenumber: data.housenumber,
-          postcode: data.postcode,
-          city: data.city,
+      categories: [
+        fetchedCategories.find((category) => {
+          category.uuid === data.category;
+          return category;
+        }),
+      ],
+      location: [
+        {
+          geometry:
+            geometryArray !== null
+              ? [
+                  {
+                    uuid: uuidv4(),
+                    type: "point",
+                    coordinates: geometryArray,
+                  },
+                ]
+              : [],
+          adress: [
+            {
+              uuid: uuidv4(),
+              street: data.street,
+              housenumber: data.housenumber,
+              postcode: data.postcode,
+              city: data.city,
+            },
+          ],
+          hint: data.hint ? data.hint : "",
         },
-        hint: data.hint ? data.hint : "",
-      },
-      properties: {
-        uuid: uuidv4(),
-        name: data.name,
-        description: data.description,
-        seating: parseInt(enteredSeating),
-        seatingBackrest: parseInt(data.seatingBackrest),
-        garbagecan: parseInt(data.garbagecan),
-        locationAccessible: data.locationAccessible,
-        devicesAccessible: [],
-        communityHint:
-          "Servicenummer der Stadt x für Spiel und Sportplätze: +49 228 000 000",
-      },
+      ],
+      properties: [
+        {
+          uuid: uuidv4(),
+          name: data.name,
+          description: data.description,
+          seating: parseInt(enteredSeating),
+          seatingBackrest: parseInt(data.seatingBackrest),
+          garbagecan: parseInt(data.garbagecan),
+          locationAccessible: data.locationAccessible,
+          devicesAccessible: [],
+          communityHint:
+            "Servicenummer der Stadt x für Spiel und Sportplätze: +49 228 000 000",
+        },
+      ],
     };
     /* onSubmit(newPoi); */
     console.log(newPoi);
