@@ -22,6 +22,14 @@ export default function PoiForm({ onSubmit, formName }) {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    async function fetchDevices() {
+      const response = await fetch("/api/devices");
+      const data = await response.json();
+      console.log(data);
+    }
+  }, []);
+
   function getCurrentPosition() {
     const geolocation = navigator.geolocation.getCurrentPosition((position) => {
       setGeometryArray([position.coords.longitude, position.coords.latitude]);
