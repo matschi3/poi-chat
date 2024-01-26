@@ -79,6 +79,13 @@ export default function PoiForm({ onSubmit, formName }) {
             "Servicenummer der Stadt x für Spiel und Sportplätze: +49 228 000 000",
         },
       ],
+      activities: [
+        {
+          uuid: uuidv4(),
+          devices: [],
+          sports: [],
+        },
+      ],
     };
     /* onSubmit(newPoi); */
     console.log(newPoi);
