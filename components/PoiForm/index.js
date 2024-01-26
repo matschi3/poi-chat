@@ -242,6 +242,19 @@ export default function PoiForm({ onSubmit, formName }) {
         </Select>
       </Fieldset>
       {/* activities, choose from predefined devices+sports, added on another form */}
+      <Fieldset>
+        <legend>Geräte und Sportarten</legend>
+        <Label htmlFor="activities-devices">Geräte</Label>
+        <Select id="activities-devices" name="devices" required>
+          {fetchedDevices.map((device) => {
+            return (
+              <option key={device.uuid} value={device.uuid}>
+                {device.name}
+              </option>
+            );
+          })}
+        </Select>
+      </Fieldset>
       {/* assets, containing img-upload */}
       <button type="submit">POI hinzufügen</button>
     </FormContainer>
