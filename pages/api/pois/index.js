@@ -13,17 +13,17 @@ export default async function handler(request, response) {
         path: "location",
         populate: [{ path: "geometry" }, { path: "adress" }],
       })
-      .populate("properties")
       .populate({
         path: "properties",
-        populate: { path: "devicesAccessible" },
+        populate: [{ path: "devicesAccessible", populate: { path: "assets" } }],
       })
-      .populate("activities")
       .populate({
         path: "activities",
-        populate: [{ path: "devices" }, { path: "sports" }],
+        populate: [
+          { path: "devices", populate: { path: "assets" } },
+          { path: "sports", populate: { path: "assets" } },
+        ],
       })
-      .populate("assets")
       .populate({
         path: "assets",
         populate: { path: "images" },
