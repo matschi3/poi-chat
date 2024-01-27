@@ -273,6 +273,7 @@ export default function PoiForm({ onSubmit, formName }) {
       {/* activities, choose from available devices+sports, added on another form */}
       <Fieldset>
         <legend>Geräte und Sportarten</legend>
+        {/* devices */}
         {Array.from({ length: devicesSelectCount }).map((_, index) => (
           <React.Fragment key={`device-${index}`}>
             <Label htmlFor={`activities-devices-${index}`}>
@@ -297,6 +298,28 @@ export default function PoiForm({ onSubmit, formName }) {
         <button type="button" onClick={increaseDevicesSelectCount}>
           + Gerät hinzufügen +
         </button>
+        {/* sports */}
+        {Array.from({ length: sportsSelectCount }).map((_, index) => (
+          <React.Fragment key={`sport-${index}`}>
+            <Label htmlFor={`activities-sports-${index}`}>
+              Sportart {index + 1}
+            </Label>
+            <Select
+              key={index}
+              id={`activities-sports-${index}`}
+              name={`sports-${index}`}
+              required
+            >
+              {fetchedSports.map((sport) => {
+                return (
+                  <option key={sport.uuid + index} value={sport.uuid}>
+                    {sport.name}
+                  </option>
+                );
+              })}
+            </Select>
+          </React.Fragment>
+        ))}
       </Fieldset>
       {/* assets, containing img-upload */}
       <button type="submit">POI hinzufügen</button>
