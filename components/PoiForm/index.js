@@ -13,11 +13,16 @@ export default function PoiForm({ onSubmit, formName }) {
   const [fetchedDevices, setFetchedDevices] = useState([]);
   const [devicesSelectCount, setSelectCount] = useState(0);
   const [fetchedSports, setFetchedSports] = useState([]);
+  const [sportsSelectCount, setSportsSelectCount] = useState(0);
   const [geometryArray, setGeometryArray] = useState(null);
   const [enteredSeating, setEnteredSeating] = useState(0);
 
   const increaseDevicesSelectCount = () => {
     setSelectCount((prevState) => prevState + 1);
+  };
+
+  const increaseSportsSelectCount = () => {
+    setSportsSelectCount((prevState) => prevState + 1);
   };
 
   useEffect(() => {
