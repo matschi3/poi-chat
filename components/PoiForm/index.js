@@ -122,7 +122,16 @@ export default function PoiForm({ onSubmit, formName }) {
                   });
                 })
               : [],
-          sports: [],
+          sports:
+            sportsSelectCount !== 0
+              ? Array.from({ length: sportsSelectCount }).map((_, index) => {
+                  const count = parseInt(data[`sports-${index}`]);
+                  return fetchedSports.find((sport) => {
+                    sport.uuid === count;
+                    return sport;
+                  });
+                })
+              : [],
         },
       ],
     };
