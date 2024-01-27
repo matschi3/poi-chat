@@ -11,14 +11,14 @@ import React, { useState, useEffect } from "react";
 export default function PoiForm({ onSubmit, formName }) {
   const [fetchedCategories, setFetchedCategories] = useState([]);
   const [fetchedDevices, setFetchedDevices] = useState([]);
-  const [devicesSelectCount, setSelectCount] = useState(0);
+  const [devicesSelectCount, setDevicesSelectCount] = useState(0);
   const [fetchedSports, setFetchedSports] = useState([]);
   const [sportsSelectCount, setSportsSelectCount] = useState(0);
   const [geometryArray, setGeometryArray] = useState(null);
   const [enteredSeating, setEnteredSeating] = useState(0);
 
   const increaseDevicesSelectCount = () => {
-    setSelectCount((prevState) => prevState + 1);
+    setDevicesSelectCount((prevState) => prevState + 1);
   };
 
   const increaseSportsSelectCount = () => {
