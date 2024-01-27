@@ -44,6 +44,7 @@ export default function PoiForm({ onSubmit, formName }) {
       const data = await response.json();
       setFetchedSports(data);
     }
+    fetchSports();
   }, []);
 
   function getCurrentPosition() {
