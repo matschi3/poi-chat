@@ -38,6 +38,14 @@ export default function PoiForm({ onSubmit, formName }) {
     fetchDevices();
   }, []);
 
+  useEffect(() => {
+    async function fetchSports() {
+      const response = await fetch("/api/sports");
+      const data = await response.json();
+      setFetchedSports(data);
+    }
+  }, []);
+
   function getCurrentPosition() {
     const geolocation = navigator.geolocation.getCurrentPosition((position) => {
       setGeometryArray([position.coords.longitude, position.coords.latitude]);
