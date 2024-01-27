@@ -6,13 +6,18 @@ import {
   Select,
 } from "./PoiForm.styled";
 import { v4 as uuidv4 } from "uuid";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function PoiForm({ onSubmit, formName }) {
   const [fetchedCategories, setFetchedCategories] = useState([]);
   const [fetchedDevices, setFetchedDevices] = useState([]);
+  const [devicesSelectCount, setSelectCount] = useState(0);
   const [geometryArray, setGeometryArray] = useState(null);
   const [enteredSeating, setEnteredSeating] = useState(0);
+
+  const increaseDevicesSelectCount = () => {
+    setSelectCount((prevState) => prevState + 1);
+  };
 
   useEffect(() => {
     async function fetchCategories() {
@@ -43,6 +48,7 @@ export default function PoiForm({ onSubmit, formName }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
+    console.log(data);
     const newPoi = {
       uuid: uuidv4(),
       categories: [
@@ -92,7 +98,16 @@ export default function PoiForm({ onSubmit, formName }) {
       activities: [
         {
           uuid: uuidv4(),
-          devices: [],
+          devices:
+            devicesSelectCount !== 0
+              ? Array.from({ length: devicesSelectCount }).map((_, index) => {
+                  const count = parseInt(data[`devices-${index}`]);
+                  return fetchedDevices.find((device) => {
+                    device.uuid === count;
+                    return device;
+                  });
+                })
+              : [],
           sports: [],
         },
       ],
@@ -241,19 +256,33 @@ export default function PoiForm({ onSubmit, formName }) {
           <option value={true}>zugänglich</option>
         </Select>
       </Fieldset>
-      {/* activities, choose from predefined devices+sports, added on another form */}
+      {/* activities, choose from available devices+sports, added on another form */}
       <Fieldset>
         <legend>Geräte und Sportarten</legend>
-        <Label htmlFor="activities-devices">Geräte</Label>
-        <Select id="activities-devices" name="devices" required>
-          {fetchedDevices.map((device) => {
-            return (
-              <option key={device.uuid} value={device.uuid}>
-                {device.name}
-              </option>
-            );
-          })}
-        </Select>
+        {Array.from({ length: devicesSelectCount }).map((_, index) => (
+          <React.Fragment key={`device-${index}`}>
+            <Label htmlFor={`activities-devices-${index}`}>
+              Gerät {index + 1}
+            </Label>
+            <Select
+              key={index}
+              id={`activities-devices-${index}`}
+              name={`devices-${index}`}
+              required
+            >
+              {fetchedDevices.map((device) => {
+                return (
+                  <option key={device.uuid + index} value={device.uuid}>
+                    {device.name}
+                  </option>
+                );
+              })}
+            </Select>
+          </React.Fragment>
+        ))}
+        <button type="button" onClick={increaseDevicesSelectCount}>
+          + Gerät hinzufügen +
+        </button>
       </Fieldset>
       {/* assets, containing img-upload */}
       <button type="submit">POI hinzufügen</button>
