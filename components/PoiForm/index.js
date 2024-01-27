@@ -320,6 +320,9 @@ export default function PoiForm({ onSubmit, formName }) {
             </Select>
           </React.Fragment>
         ))}
+        <button type="button" onClick={increaseSportsSelectCount}>
+          + Sportart hinzufügen +
+        </button>
       </Fieldset>
       {/* assets, containing img-upload */}
       <button type="submit">POI hinzufügen</button>
