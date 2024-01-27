@@ -73,6 +73,7 @@ export default function PoiForm({ onSubmit, formName }) {
       ],
       location: [
         {
+          uuid: uuidv4(),
           geometry:
             geometryArray !== null
               ? [
@@ -134,6 +135,8 @@ export default function PoiForm({ onSubmit, formName }) {
               : [],
         },
       ],
+      assets: [],
+      events: [],
     };
     /* onSubmit(newPoi); */
     console.log(newPoi);
