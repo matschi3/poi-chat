@@ -12,6 +12,7 @@ export default function PoiForm({ onSubmit, formName }) {
   const [fetchedCategories, setFetchedCategories] = useState([]);
   const [fetchedDevices, setFetchedDevices] = useState([]);
   const [devicesSelectCount, setSelectCount] = useState(0);
+  const [fetchedSports, setFetchedSports] = useState([]);
   const [geometryArray, setGeometryArray] = useState(null);
   const [enteredSeating, setEnteredSeating] = useState(0);
 
@@ -48,7 +49,6 @@ export default function PoiForm({ onSubmit, formName }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    console.log(data);
     const newPoi = {
       uuid: uuidv4(),
       categories: [
