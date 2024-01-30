@@ -138,7 +138,7 @@ export default function PoiForm({ onSubmit, formName }) {
       assets: [],
       events: [],
     };
-    /* onSubmit(newPoi); */
+    onSubmit(newPoi);
     console.log(newPoi);
   }
 
