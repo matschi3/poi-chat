@@ -15,7 +15,7 @@ export default function PoiBlock({ poi }) {
     <>
       <StyledBlockBox
         onClick={() => {
-          router.push(`/poi/${poi.id}`);
+          router.push(`/poi/${poi._id}`);
         }}
       >
         <StyledPoiBlock>
