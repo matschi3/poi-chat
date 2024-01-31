@@ -21,13 +21,10 @@ export default function CreatePoiPage() {
     });
     if (response.ok) {
       const geometryData = await response.json();
-      console.log("geometryData", geometryData);
-      console.log("uuid", uuid);
       const foundGeometry = geometryData.find((geometryObject) => {
         return geometryObject.uuid === uuid;
       });
       if (foundGeometry) {
-        console.log("foundGeometry", foundGeometry);
         setGeometry(foundGeometry._id);
       }
     }
@@ -35,23 +32,23 @@ export default function CreatePoiPage() {
 
   async function createPoi(newPoi) {
     console.log("newPoi", newPoi);
+    /* geometry */
     if (newPoi.location[0].geometry[0] === "n/a") {
       setGeometry([]);
     } else {
       const newPoiGeometry = newPoi.location[0].geometry[0];
-      console.log("newPoiGeometry", newPoiGeometry);
       await createGeometry(newPoiGeometry);
       await fetchGeometryId(newPoiGeometry.uuid);
     }
-    console.log("geometry in State", geometry);
-    /* const response = await fetch("/api/pois", {
+    /* POST newPoiToDb */
+    const response = await fetch("/api/pois", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newPoi),
+      body: JSON.stringify(newPoiToDb),
     });
     if (response.ok) {
       console.log("Poi created successfully");
-    } */
+    }
   }
 
   return <PoiForm onSubmit={createPoi} formName="create-poi" />;
