@@ -1,6 +1,6 @@
-import { pois } from "@/lib/pois";
 import { useRouter } from "next/router";
 import PoiCard from "@/components/PoiCard";
+import { useState, useEffect } from "react";
 
 export default function PoiDetailPage() {
   const router = useRouter();
