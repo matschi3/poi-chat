@@ -1,9 +1,18 @@
 import Head from "next/head";
-import { pois } from "@/lib/pois";
 import PoiBlock from "@/components/PoiBlock/index.js";
 import { StyledBlockContainer } from "@/components/PoiBlock/PoiBlock.styled";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [pois, setPois] = useState([]);
+  useEffect(() => {
+    async function fetchPois() {
+      const response = await fetch("/api/pois");
+      const fetchedPois = await response.json();
+      setPois(fetchedPois);
+    }
+    fetchPois();
+  }, []);
   return (
     <>
       <Head>
@@ -14,9 +23,13 @@ export default function Home() {
       </Head>
       <main>
         <StyledBlockContainer>
-          {pois.map((poi) => {
-            return <PoiBlock key={poi.id} poi={poi} />;
-          })}
+          {pois.length < 1 ? (
+            <h2>Loading</h2>
+          ) : (
+            pois.map((poi) => {
+              return <PoiBlock key={poi._id} poi={poi} />;
+            })
+          )}
         </StyledBlockContainer>
       </main>
     </>
