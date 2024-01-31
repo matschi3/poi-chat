@@ -15,20 +15,20 @@ export default function PoiBlock({ poi }) {
     <>
       <StyledBlockBox
         onClick={() => {
-          router.push(`/poi/${poi.id}`);
+          router.push(`/poi/${poi._id}`);
         }}
       >
         <StyledPoiBlock>
           <StyledBlockImage />
           <StyledBlockHeading>
-            {poi.properties.name.length < 32
-              ? poi.properties.name
-              : poi.properties.name.slice(0, 32) + ".."}
+            {poi.properties[0].name.length < 32
+              ? poi.properties[0].name
+              : poi.properties[0].name.slice(0, 32) + ".."}
           </StyledBlockHeading>
           <StyledBlockText>
-            {poi.properties.description.length < 32
-              ? poi.properties.description
-              : poi.properties.description.slice(0, 32) + ".."}
+            {poi.properties[0].description.length < 32
+              ? poi.properties[0].description
+              : poi.properties[0].description.slice(0, 32) + ".."}
           </StyledBlockText>
           {/* <StyledBlockLastUpdate>6m ago</StyledBlockLastUpdate> */}
         </StyledPoiBlock>

@@ -16,16 +16,17 @@ import {
   StyledCardLiIndication,
   StyledCardDivider,
 } from "./PoiCard.styled";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
+
   return (
     <StyledPoiCard>
       <StyledBackground />
       <StyledCardImage />
       <StyledCardHeadingContainer>
-        <StyledCardHeading>{poi.properties.name}</StyledCardHeading>
+        <StyledCardHeading>{poi.properties[0].name}</StyledCardHeading>
         <StyledCardDescription>
           {poi.properties.description}
         </StyledCardDescription>
@@ -66,41 +67,40 @@ export default function PoiCard({ poi }) {
         {activeTab === "info" && (
           <>
             <StyledCardAdress>
-              {poi.location.adress.street} {poi.location.adress.housenumber},{" "}
-              {poi.location.adress.postcode} {poi.location.adress.city}
+              {poi.location[0].adress.street}{" "}
+              {poi.location[0].adress.housenumber},{" "}
+              {poi.location[0].adress.postcode} {poi.location[0].adress.city}
             </StyledCardAdress>
             <StyledCardAdress>
-              {poi.location.hint ? poi.location.hint : ""}
+              {poi.location[0].hint ? poi.location[0].hint : ""}
             </StyledCardAdress>
             <StyledCardUl>
               Sportarten
-              {poi.activities.sports.map((sport, index) => {
-                const key = `${index}${sport}`;
+              {poi.activities[0].sports.map((sport, index) => {
                 return (
-                  <>
-                    <StyledCardLi key={key}>
-                      {sport}
+                  <React.Fragment key={`sport-${index}-${sport.name}`}>
+                    <StyledCardLi>
+                      {sport.name}
                       <StyledCardLiDot />
                       <StyledCardLiIndication>sport</StyledCardLiIndication>
                     </StyledCardLi>
-                    <StyledCardDivider key={"divider" + key} />
-                  </>
+                    <StyledCardDivider />
+                  </React.Fragment>
                 );
               })}
             </StyledCardUl>
             <StyledCardUl>
               Geräte
-              {poi.activities.devices.map((device, index) => {
-                const key = `${index}${device}`;
+              {poi.activities[0].devices.map((device, index) => {
                 return (
-                  <>
-                    <StyledCardLi key={key}>
-                      {device}
+                  <React.Fragment key={`device-${index}-${device.name}`}>
+                    <StyledCardLi>
+                      {device.name}
                       <StyledCardLiDot />
                       <StyledCardLiIndication>device</StyledCardLiIndication>
                     </StyledCardLi>
-                    <StyledCardDivider key={"divider" + key} />
-                  </>
+                    <StyledCardDivider />
+                  </React.Fragment>
                 );
               })}
             </StyledCardUl>
