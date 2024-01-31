@@ -4,18 +4,38 @@ import { useState, useEffect } from "react";
 
 export default function PoiDetailPage() {
   const [poi, setPoi] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const router = useRouter();
   const { id } = router.query;
+
   useEffect(() => {
     async function fetchPoi(id) {
-      const response = await fetch(`/api/pois/${id}`);
-      const fetchedPoi = await response.json();
-      setPoi(fetchedPoi);
+      try {
+        const response = await fetch(`/api/pois/${id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch POI. Check correct url");
+        }
+        const fetchedPoi = await response.json();
+        setPoi(fetchedPoi);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
     }
-    fetchPoi(id);
+    if (id) {
+      fetchPoi(id);
+    }
   }, [id]);
-  if (poi.length < 1) {
+
+  if (loading) {
     return <h2>Loading</h2>;
   }
+
+  if (error) {
+    return <h2>Error: {error}</h2>;
+  }
+
   return <PoiCard poi={poi} />;
 }
