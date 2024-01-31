@@ -15,7 +15,6 @@ export default function PoiDetailPage() {
     fetchPoi(id);
   }, [id]);
   if (poi.length < 1) {
-    console.log(poi);
     return <h2>Loading</h2>;
   }
   return <PoiCard poi={poi} />;
