@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import PoiCard from "@/components/PoiCard";
 import { useState, useEffect } from "react";
+import Header from "@/components/Header";
 
 export default function PoiDetailPage() {
   const [poi, setPoi] = useState([]);
@@ -37,5 +38,10 @@ export default function PoiDetailPage() {
     return <h2>Error: {error}</h2>;
   }
 
-  return <PoiCard poi={poi} />;
+  return (
+    <>
+      <Header />
+      <PoiCard poi={poi} />
+    </>
+  );
 }
