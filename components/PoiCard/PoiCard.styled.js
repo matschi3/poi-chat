@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 export const StyledPoiCard = styled.div`
   position: relative;
-  top: 60px;
   width: 100%;
-  border-top: solid 1px black;
 `;
 
 export const StyledCardImage = styled.div`
