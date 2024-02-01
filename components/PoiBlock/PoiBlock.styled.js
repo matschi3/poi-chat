@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledBlockContainer = styled.div`
   position: absolute;
   width: calc(100% - 32px);
-  top: 60px;
+  top: 70px;
   right: 16px;
   left: 16px;
   height: 356px;
