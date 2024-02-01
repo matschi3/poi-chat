@@ -1,7 +1,7 @@
-import Head from "next/head";
 import PoiBlock from "@/components/PoiBlock/index.js";
 import { StyledBlockContainer } from "@/components/PoiBlock/PoiBlock.styled";
 import { useState, useEffect } from "react";
+import Header from "@/components/Header";
 
 export default function Home() {
   const [pois, setPois] = useState([]);
@@ -15,15 +15,7 @@ export default function Home() {
   }, []);
   return (
     <>
-      <Head>
-        <title>POI-Chat</title>
-        <meta
-          name="description"
-          content="Chat with like-minded an get connected right at your Point of Interest"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Header />
       <main>
         <StyledBlockContainer>
           {pois.length < 1 ? (
