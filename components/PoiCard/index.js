@@ -67,9 +67,10 @@ export default function PoiCard({ poi }) {
         {activeTab === "info" && (
           <>
             <StyledCardAdress>
-              {poi.location[0].adress.street}{" "}
-              {poi.location[0].adress.housenumber},{" "}
-              {poi.location[0].adress.postcode} {poi.location[0].adress.city}
+              {poi.location[0].adress[0].street}{" "}
+              {poi.location[0].adress[0].housenumber}{" "}
+              {poi.location[0].adress[0].postcode}{" "}
+              {poi.location[0].adress[0].city}
             </StyledCardAdress>
             <StyledCardAdress>
               {poi.location[0].hint ? poi.location[0].hint : ""}
