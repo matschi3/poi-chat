@@ -5,7 +5,7 @@ import {
   HeaderTitle,
   HeaderLeft,
   HeaderRight,
-  BackButton,
+  Button,
 } from "./Header.styled";
 
 export default function Header({ title, backButton }) {
@@ -25,7 +25,7 @@ export default function Header({ title, backButton }) {
       </Head>
       <StyledHeader>
         <HeaderLeft>
-          {backButton && <BackButton onClick={handleBack}>Zurück</BackButton>}
+          {backButton && <Button onClick={handleBack}>Zurück</Button>}
         </HeaderLeft>
         <HeaderTitle>{title}</HeaderTitle>
         <HeaderRight></HeaderRight>

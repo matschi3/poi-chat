@@ -26,6 +26,6 @@ export const HeaderTitle = styled.h1`
   text-shadow: 2px 2px 2px var(--color-black);
 `;
 
-export const BackButton = styled.span`
+export const Button = styled.span`
   padding: 8px;
 `;
