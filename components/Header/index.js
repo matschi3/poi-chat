@@ -1,6 +1,12 @@
 import Head from "next/head";
 import Router from "next/router";
-import { StyledHeader, HeaderTitle, BackButton } from "./Header.styled";
+import {
+  StyledHeader,
+  HeaderTitle,
+  HeaderLeft,
+  HeaderRight,
+  BackButton,
+} from "./Header.styled";
 
 export default function Header({ title }) {
   const handleBack = () => {
@@ -18,8 +24,11 @@ export default function Header({ title }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledHeader>
-        <BackButton onClick={handleBack}>Back</BackButton>
+        <HeaderLeft>
+          <BackButton onClick={handleBack}>Zurück</BackButton>
+        </HeaderLeft>
         <HeaderTitle>{title}</HeaderTitle>
+        <HeaderRight></HeaderRight>
       </StyledHeader>
     </>
   );
