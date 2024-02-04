@@ -13,9 +13,16 @@ export default function Home() {
     }
     fetchPois();
   }, []);
+
+  const testFnct = () => {
+    console.log("it works!");
+  };
   return (
     <>
-      <Header title={"POIs"} />
+      <Header
+        title={"POIs"}
+        leftButton={{ function: testFnct, text: "TestText" }}
+      />
       <main>
         <StyledBlockContainer>
           {pois.length < 1 ? (
