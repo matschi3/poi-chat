@@ -40,7 +40,13 @@ export default function PoiDetailPage() {
 
   return (
     <>
-      <Header />
+      <Header
+        title={
+          poi.properties[0].name.length < 32
+            ? poi.properties[0].name
+            : poi.properties[0].name.slice(0, 32) + ".."
+        }
+      />
       <PoiCard poi={poi} />
     </>
   );
