@@ -15,7 +15,7 @@ export default function Home() {
   }, []);
   return (
     <>
-      <Header />
+      <Header title={"POIs"} />
       <main>
         <StyledBlockContainer>
           {pois.length < 1 ? (
