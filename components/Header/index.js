@@ -8,7 +8,7 @@ import {
   BackButton,
 } from "./Header.styled";
 
-export default function Header({ title }) {
+export default function Header({ title, backButton }) {
   const handleBack = () => {
     Router.back();
   };
@@ -25,7 +25,7 @@ export default function Header({ title }) {
       </Head>
       <StyledHeader>
         <HeaderLeft>
-          <BackButton onClick={handleBack}>Zurück</BackButton>
+          {backButton && <BackButton onClick={handleBack}>Zurück</BackButton>}
         </HeaderLeft>
         <HeaderTitle>{title}</HeaderTitle>
         <HeaderRight></HeaderRight>
