@@ -46,6 +46,7 @@ export default function PoiDetailPage() {
             ? poi.properties[0].name
             : poi.properties[0].name.slice(0, 32) + ".."
         }
+        backButton
       />
       <PoiCard poi={poi} />
     </>
