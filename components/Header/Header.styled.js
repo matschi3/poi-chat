@@ -9,6 +9,16 @@ export const StyledHeader = styled.header`
   align-items: center;
 `;
 
+export const HeaderLeft = styled.div`
+  position: absolute;
+  left: 16px;
+`;
+
+export const HeaderRight = styled.div`
+  position: absolute;
+  right: 16px;
+`;
+
 export const HeaderTitle = styled.h1`
   color: var(--color-white);
   font-size: 30px;
@@ -16,4 +26,6 @@ export const HeaderTitle = styled.h1`
   text-shadow: 2px 2px 2px var(--color-black);
 `;
 
-export const BackButton = styled.span``;
+export const BackButton = styled.span`
+  padding: 8px;
+`;
