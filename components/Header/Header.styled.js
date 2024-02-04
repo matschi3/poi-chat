@@ -15,3 +15,5 @@ export const HeaderTitle = styled.h1`
   font-weight: 600;
   text-shadow: 2px 2px 2px var(--color-black);
 `;
+
+export const BackButton = styled.span``;
