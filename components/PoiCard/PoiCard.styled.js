@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledPoiCard = styled.div`
   position: relative;
   width: 100%;
+  top: var(--header-height);
 `;
 
 export const StyledCardImage = styled.div`
