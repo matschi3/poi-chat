@@ -24,6 +24,8 @@ export default createGlobalStyle`
     --size-medium: 16px;
     --size-mediumplus: 18px;
     --size-large: 30px;
+
+    --header-height: 60px;
   }
 
   body {
