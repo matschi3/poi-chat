@@ -17,9 +17,24 @@ import {
   StyledCardDivider,
 } from "./PoiCard.styled";
 import React, { useState } from "react";
+import Router from "next/router";
 
 export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
+
+  async function deletePoi() {
+    const response = await fetch(`/api/pois/${poi._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete POI. Check correct url");
+    }
+    const fetchedPoi = await response.json();
+    Router.push("/");
+  }
 
   return (
     <StyledPoiCard>
@@ -105,6 +120,7 @@ export default function PoiCard({ poi }) {
                 );
               })}
             </StyledCardUl>
+            <button onClick={deletePoi}>Delete</button>
           </>
         )}
         {activeTab === "chat" && <span>Chat is here</span>}
