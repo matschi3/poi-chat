@@ -34,6 +34,12 @@ export default async function handler(request, response) {
       return response.status(404).json({ message: "No POI found" });
     }
     return response.status(200).json(poi);
+  } else if (request.method === "DELETE") {
+    const deletedPoi = await Poi.findByIdAndDelete(id);
+    if (!deletedPoi) {
+      return response.status(404).json({ message: "No POI found" });
+    }
+    return response.status(200).json(deletedPoi);
   }
   return response.status(405).json({ status: "Method not allowed" });
 }
