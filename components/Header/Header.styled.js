@@ -8,6 +8,7 @@ export const StyledHeader = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 export const HeaderLeft = styled.div`
