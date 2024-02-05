@@ -6,7 +6,6 @@ export const StyledBlockContainer = styled.div`
   top: 70px;
   right: 16px;
   left: 16px;
-  height: 356px;
   font-size: 14px;
   color: var(--color-black);
   display: flex;
