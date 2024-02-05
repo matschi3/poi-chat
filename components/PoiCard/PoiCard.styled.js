@@ -19,9 +19,9 @@ export const StyledCardImage = styled.div`
 
 export const StyledBackground = styled.div`
   position: absolute;
-  top: 0;
+  top: calc(-1 * var(--header-height));
   width: 100%;
-  height: 135px;
+  height: 195px;
   background-color: var(--color-primary);
 `;
 
