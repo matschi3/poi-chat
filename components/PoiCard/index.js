@@ -23,6 +23,12 @@ export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
 
   async function deletePoi() {
+    const iDsToDelete = {
+      activityId: poi.activities[0]._id,
+      categoriesId: poi.categories[0]._id,
+      locationId: poi.location[0]._id,
+      propertyId: poi.properties[0]._id,
+    };
     const response = await fetch(`/api/pois/${poi._id}`, {
       method: "DELETE",
       headers: {
