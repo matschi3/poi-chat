@@ -23,12 +23,6 @@ export default async function handler(request, response) {
     } catch (error) {
       response.status(400).json({ error: error.message });
     }
-  } else if (request.method === "DELETE") {
-    const deletedLocation = await Location.findByIdAndDelete(id);
-    if (!deletedLocation) {
-      return response.status(404).json({ message: "No Location found" });
-    }
-    return response.status(200).json(deletedLocation);
   }
   return response.status(405).json({ status: "Method not allowed" });
 }
