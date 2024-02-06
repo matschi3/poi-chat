@@ -46,6 +46,18 @@ export default function PoiCard({ poi }) {
     }
   }
 
+  async function deleteLocation(locationId) {
+    const response = await fetch(`/api/locations/${locationId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete Location. Check correct url");
+    }
+  }
+
   async function deletePoi() {
     const iDsToDelete = {
       activityId: poi.activities[0]._id,
@@ -55,6 +67,7 @@ export default function PoiCard({ poi }) {
     };
     deleteActivity(iDsToDelete.activityId);
     deleteCategory(iDsToDelete.categoriesId);
+    deleteLocation(iDsToDelete.locationId);
     const response = await fetch(`/api/pois/${poi._id}`, {
       method: "DELETE",
       headers: {
