@@ -34,6 +34,18 @@ export default function PoiCard({ poi }) {
     }
   }
 
+  async function deleteCategory(categoryId) {
+    const response = await fetch(`/api/categories/${categoryId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete Category. Check correct url");
+    }
+  }
+
   async function deletePoi() {
     const iDsToDelete = {
       activityId: poi.activities[0]._id,
@@ -42,6 +54,7 @@ export default function PoiCard({ poi }) {
       propertyId: poi.properties[0]._id,
     };
     deleteActivity(iDsToDelete.activityId);
+    deleteCategory(iDsToDelete.categoriesId);
     const response = await fetch(`/api/pois/${poi._id}`, {
       method: "DELETE",
       headers: {
