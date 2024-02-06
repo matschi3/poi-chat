@@ -44,6 +44,28 @@ export default function PoiCard({ poi }) {
       throw new Error("Failed to delete Category. Check correct url");
     }
   }
+  async function deleteAdress(adressId) {
+    const response = await fetch(`/api/adresses/${adressId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete Adress. Check correct url");
+    }
+  }
+  async function deleteGeometry(geometryId) {
+    const response = await fetch(`/api/geometries/${geometryId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete Geometry. Check correct url");
+    }
+  }
   async function deleteLocation(locationId) {
     const response = await fetch(`/api/locations/${locationId}`, {
       method: "DELETE",
@@ -70,14 +92,18 @@ export default function PoiCard({ poi }) {
   async function deletePoi() {
     const iDsToDelete = {
       activityId: poi.activities[0]._id,
-      categoriesId: poi.categories[0]._id,
+      categoryId: poi.categories[0]._id,
+      adressId: poi.location[0].adress[0]._id,
+      geometryId: poi.location[0].geometry[0]._id,
       locationId: poi.location[0]._id,
       propertyId: poi.properties[0]._id,
     };
-    deleteActivity(iDsToDelete.activityId);
-    deleteCategory(iDsToDelete.categoriesId);
-    deleteLocation(iDsToDelete.locationId);
-    deleteProperty(iDsToDelete.propertyId);
+    await deleteActivity(iDsToDelete.activityId);
+    await deleteCategory(iDsToDelete.categoryId);
+    await deleteAdress(iDsToDelete.adressId);
+    await deleteGeometry(iDsToDelete.geometryId);
+    await deleteLocation(iDsToDelete.locationId);
+    await deleteProperty(iDsToDelete.propertyId);
 
     const response = await fetch(`/api/pois/${poi._id}`, {
       method: "DELETE",
@@ -88,7 +114,6 @@ export default function PoiCard({ poi }) {
     if (!response.ok) {
       throw new Error("Failed to delete POI. Check correct url");
     }
-    const fetchedPoi = await response.json();
     Router.push("/");
   }
 
