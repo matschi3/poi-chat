@@ -2,9 +2,12 @@ import PoiBlock from "@/components/PoiBlock/index.js";
 import { StyledBlockContainer } from "@/components/PoiBlock/PoiBlock.styled";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
+import Search from "@/components/Search";
 
 export default function Home() {
   const [pois, setPois] = useState([]);
+  const [searchIsActive, setSearchIsActive] = useState(false);
+
   useEffect(() => {
     async function fetchPois() {
       const response = await fetch("/api/pois");
@@ -14,17 +17,18 @@ export default function Home() {
     fetchPois();
   }, []);
 
-  const testFnct = () => {
-    console.log("it works!");
+  const toggleSearch = () => {
+    setSearchIsActive(!searchIsActive);
   };
   return (
     <>
       <Header
         title={"POIs"}
-        leftButton={{ function: testFnct, text: "TestText" }}
+        leftButton={{ function: toggleSearch, text: "Suche" }}
       />
       <main>
-        <StyledBlockContainer>
+        {searchIsActive && <Search />}
+        <StyledBlockContainer searchIsActive={searchIsActive}>
           {pois.length < 1 ? (
             <h2>Loading</h2>
           ) : (
