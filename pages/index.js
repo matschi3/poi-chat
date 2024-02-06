@@ -24,6 +24,14 @@ export default function Home() {
   const handleSearch = (value) => {
     setSearchQuery(value);
   };
+
+  let renderedPois = pois;
+  searchIsActive
+    ? (renderedPois = pois.filter((poi) =>
+        poi.properties[0].name.toLowerCase().includes(searchQuery.toLowerCase())
+      ))
+    : (renderedPois = pois);
+
   return (
     <>
       <Header
@@ -36,7 +44,7 @@ export default function Home() {
           {pois.length < 1 ? (
             <h2>Loading</h2>
           ) : (
-            pois.map((poi) => {
+            renderedPois.map((poi) => {
               return <PoiBlock key={poi._id} poi={poi} />;
             })
           )}
