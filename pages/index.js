@@ -39,7 +39,9 @@ export default function Home() {
         leftButton={{ function: toggleSearch, text: "Suche" }}
       />
       <main>
-        {searchIsActive && <Search handleSearch={handleSearch} />}
+        {searchIsActive && (
+          <Search handleSearch={handleSearch} searchQuery={searchQuery} />
+        )}
         <StyledBlockContainer searchIsActive={searchIsActive}>
           {pois.length < 1 ? (
             <h2>Loading</h2>
