@@ -21,6 +21,9 @@ export default function Home() {
   const toggleSearch = () => {
     setSearchIsActive(!searchIsActive);
   };
+  const handleSearch = (value) => {
+    setSearchQuery(value);
+  };
   return (
     <>
       <Header
@@ -28,7 +31,7 @@ export default function Home() {
         leftButton={{ function: toggleSearch, text: "Suche" }}
       />
       <main>
-        {searchIsActive && <Search />}
+        {searchIsActive && <Search handleSearch={handleSearch} />}
         <StyledBlockContainer searchIsActive={searchIsActive}>
           {pois.length < 1 ? (
             <h2>Loading</h2>
