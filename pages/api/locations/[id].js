@@ -2,6 +2,7 @@ import dbConnect from "../../../db/connect.js";
 import Location from "../../../db/models/Location.js";
 
 export default async function handler(request, response) {
+  const { id } = request.query;
   await dbConnect();
   if (request.method === "GET") {
     const location = await Location.find(id)

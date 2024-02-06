@@ -2,6 +2,7 @@ import dbConnect from "../../../db/connect.js";
 import Geometry from "../../../db/models/Geometry.js";
 
 export default async function handler(request, response) {
+  const { id } = request.query;
   await dbConnect();
   if (request.method === "GET") {
     const geometry = await Geometry.find({}).populate("coordinates");

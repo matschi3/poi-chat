@@ -2,6 +2,7 @@ import dbConnect from "../../../db/connect.js";
 import Adress from "../../../db/models/Adress.js";
 
 export default async function handler(request, response) {
+  const { id } = request.query;
   await dbConnect();
   if (request.method === "GET") {
     const adress = await Adress.find(id);
