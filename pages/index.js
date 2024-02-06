@@ -46,6 +46,7 @@ export default function Home() {
           {pois.length < 1 ? (
             <h2>Loading</h2>
           ) : (
+            (renderedPois.length < 1 && <h2>Keine POIs gefunden</h2>) ||
             renderedPois.map((poi) => {
               return <PoiBlock key={poi._id} poi={poi} />;
             })
