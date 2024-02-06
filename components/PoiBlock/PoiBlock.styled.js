@@ -3,7 +3,11 @@ import styled from "styled-components";
 export const StyledBlockContainer = styled.div`
   position: absolute;
   width: calc(100% - 32px);
-  top: calc(var(--header-height) + 16px);
+  top: ${(props) =>
+    props.searchIsActive === true
+      ? "calc(var(--header-height) + 50px)"
+      : "var(--header-height)"};
+  margin-top: 16px;
   right: 16px;
   left: 16px;
   font-size: 14px;
@@ -11,7 +15,7 @@ export const StyledBlockContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 `;
 
 export const StyledBlockDivider = styled.div`
