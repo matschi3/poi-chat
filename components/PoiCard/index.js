@@ -33,7 +33,6 @@ export default function PoiCard({ poi }) {
       throw new Error("Failed to delete Activity. Check correct url");
     }
   }
-
   async function deleteCategory(categoryId) {
     const response = await fetch(`/api/categories/${categoryId}`, {
       method: "DELETE",
@@ -45,7 +44,6 @@ export default function PoiCard({ poi }) {
       throw new Error("Failed to delete Category. Check correct url");
     }
   }
-
   async function deleteLocation(locationId) {
     const response = await fetch(`/api/locations/${locationId}`, {
       method: "DELETE",
@@ -55,6 +53,17 @@ export default function PoiCard({ poi }) {
     });
     if (!response.ok) {
       throw new Error("Failed to delete Location. Check correct url");
+    }
+  }
+  async function deleteProperty(propertyId) {
+    const response = await fetch(`/api/properties/${propertyId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete Property. Check correct url");
     }
   }
 
@@ -68,6 +77,8 @@ export default function PoiCard({ poi }) {
     deleteActivity(iDsToDelete.activityId);
     deleteCategory(iDsToDelete.categoriesId);
     deleteLocation(iDsToDelete.locationId);
+    deleteProperty(iDsToDelete.propertyId);
+
     const response = await fetch(`/api/pois/${poi._id}`, {
       method: "DELETE",
       headers: {
