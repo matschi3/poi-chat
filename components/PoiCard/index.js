@@ -22,6 +22,18 @@ import Router from "next/router";
 export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
 
+  async function deleteActivity(activityId) {
+    const response = await fetch(`/api/activities/${activityId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete Activity. Check correct url");
+    }
+  }
+
   async function deletePoi() {
     const iDsToDelete = {
       activityId: poi.activities[0]._id,
@@ -29,6 +41,7 @@ export default function PoiCard({ poi }) {
       locationId: poi.location[0]._id,
       propertyId: poi.properties[0]._id,
     };
+    deleteActivity(iDsToDelete.activityId);
     const response = await fetch(`/api/pois/${poi._id}`, {
       method: "DELETE",
       headers: {
