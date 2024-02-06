@@ -7,6 +7,7 @@ import Search from "@/components/Search";
 export default function Home() {
   const [pois, setPois] = useState([]);
   const [searchIsActive, setSearchIsActive] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fetchPois() {
