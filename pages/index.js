@@ -25,18 +25,19 @@ export default function Home() {
     setSearchQuery(value);
   };
 
-  let renderedPois = pois;
-  searchIsActive
-    ? (renderedPois = pois.filter((poi) =>
-        poi.properties[0].name.toLowerCase().includes(searchQuery.toLowerCase())
-      ))
-    : (renderedPois = pois);
+  const renderedPois = searchIsActive
+    ? pois.filter((poi) =>
+        poi.properties?.[0]?.name
+          ?.toLowerCase()
+          .includes(searchQuery.toLowerCase())
+      )
+    : pois;
 
   return (
     <>
       <Header
         title={"POIs"}
-        leftButton={{ function: toggleSearch, text: "Suche" }}
+        leftButton={{ onClick: toggleSearch, text: "Suche" }}
       />
       <main>
         {searchIsActive && (
@@ -45,11 +46,10 @@ export default function Home() {
         <StyledBlockContainer searchIsActive={searchIsActive}>
           {pois.length < 1 ? (
             <h2>Loading</h2>
+          ) : renderedPois.length < 1 ? (
+            <h2>Keine POIs gefunden</h2>
           ) : (
-            (renderedPois.length < 1 && <h2>Keine POIs gefunden</h2>) ||
-            renderedPois.map((poi) => {
-              return <PoiBlock key={poi._id} poi={poi} />;
-            })
+            renderedPois.map((poi) => <PoiBlock key={poi._id} poi={poi} />)
           )}
         </StyledBlockContainer>
       </main>
