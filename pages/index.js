@@ -43,7 +43,7 @@ export default function Home() {
         {searchIsActive && (
           <Search handleSearch={handleSearch} searchQuery={searchQuery} />
         )}
-        <StyledBlockContainer searchIsActive={searchIsActive}>
+        <StyledBlockContainer $searchIsActive={searchIsActive}>
           {pois.length < 1 ? (
             <h2>Loading</h2>
           ) : renderedPois.length < 1 ? (

@@ -3,10 +3,9 @@ import styled from "styled-components";
 export const StyledBlockContainer = styled.div`
   position: absolute;
   width: calc(100% - 32px);
-  top: ${(props) =>
-    props.searchIsActive === true
-      ? "calc(var(--header-height) + 50px)"
-      : "var(--header-height)"};
+  top: var(--header-height);
+  ${(props) =>
+    props.$searchIsActive && `top: calc(var(--header-height) + 50px)`};
   margin-top: 16px;
   right: 16px;
   left: 16px;
