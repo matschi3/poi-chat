@@ -25,6 +25,9 @@ export default function Home() {
   const handleSearch = (value) => {
     setSearchQuery(value);
   };
+  const clearSearch = () => {
+    setSearchQuery("");
+  };
 
   const renderedPois = searchIsActive
     ? pois.filter((poi) =>
@@ -51,7 +54,11 @@ export default function Home() {
       />
       <main>
         {searchIsActive && (
-          <Search handleSearch={handleSearch} searchQuery={searchQuery} />
+          <Search
+            handleSearch={handleSearch}
+            searchQuery={searchQuery}
+            clearSearch={clearSearch}
+          />
         )}
         <StyledBlockContainer $searchIsActive={searchIsActive}>
           {pois.length < 1 ? (
