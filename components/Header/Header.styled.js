@@ -30,4 +30,5 @@ export const HeaderTitle = styled.h1`
 
 export const Button = styled.span`
   padding: 8px;
+  font-size: 16px;
 `;
