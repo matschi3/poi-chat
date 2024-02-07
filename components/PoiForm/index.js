@@ -8,6 +8,7 @@ import {
 } from "./PoiForm.styled";
 import { v4 as uuidv4 } from "uuid";
 import React, { useState, useEffect } from "react";
+import Router from "next/router";
 
 export default function PoiForm({ onSubmit, formName }) {
   const [fetchedCategories, setFetchedCategories] = useState([]);
@@ -84,7 +85,13 @@ export default function PoiForm({ onSubmit, formName }) {
                     coordinates: geometryArray,
                   },
                 ]
-              : ["n/a"],
+              : [
+                  {
+                    uuid: uuidv4(),
+                    type: "n/a",
+                    coordinates: [],
+                  },
+                ],
           adress: [
             {
               uuid: uuidv4(),
@@ -140,6 +147,7 @@ export default function PoiForm({ onSubmit, formName }) {
       events: [],
     };
     onSubmit(newPoi);
+    Router.push("/");
   }
 
   return (
