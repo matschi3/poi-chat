@@ -1,5 +1,9 @@
-import { StyledDrawer } from "./Drawer.styled";
+import { DrawerContainer, StyledDrawer } from "./Drawer.styled";
 
 export default function Drawer() {
-  return <StyledDrawer></StyledDrawer>;
+  return (
+    <DrawerContainer>
+      <StyledDrawer></StyledDrawer>
+    </DrawerContainer>
+  );
 }
