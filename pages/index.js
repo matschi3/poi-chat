@@ -10,6 +10,7 @@ export default function Home() {
   const [pois, setPois] = useState([]);
   const [searchIsActive, setSearchIsActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [drawerIsActive, setDrawerIsActive] = useState(false);
 
   useEffect(() => {
     async function fetchPois() {
@@ -28,6 +29,13 @@ export default function Home() {
   };
   const clearSearch = () => {
     setSearchQuery("");
+  };
+
+  const openDrawer = () => {
+    setDrawerIsActive(true);
+  };
+  const closeDrawer = () => {
+    setDrawerIsActive(false);
   };
 
   const renderedPois = searchIsActive
