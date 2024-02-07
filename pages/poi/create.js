@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import PoiForm from "@/components/PoiForm/index.js";
 
 export default function CreatePoiPage() {
@@ -12,5 +13,10 @@ export default function CreatePoiPage() {
     }
   }
 
-  return <PoiForm onSubmit={createPoi} formName="create-poi" />;
+  return (
+    <>
+      <Header title="POI erstellen" backButton />
+      <PoiForm onSubmit={createPoi} formName="create-poi" />
+    </>
+  );
 }
