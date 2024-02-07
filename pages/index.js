@@ -4,6 +4,7 @@ import { StyledBlockContainer } from "@/components/PoiBlock/PoiBlock.styled";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Search from "@/components/Search";
+import AddButton from "@/components/AddButton";
 
 export default function Home() {
   const [pois, setPois] = useState([]);
@@ -69,6 +70,7 @@ export default function Home() {
             renderedPois.map((poi) => <PoiBlock key={poi._id} poi={poi} />)
           )}
         </StyledBlockContainer>
+        <AddButton />
       </main>
     </>
   );
