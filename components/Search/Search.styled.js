@@ -16,6 +16,9 @@ export const SearchInput = styled.input`
   height: 32px;
   border-radius: 16px;
   caret-color: var(--color-black);
+  &:focus {
+    outline-color: var(--color-primary);
+  }
 `;
 
 export const SearchClearButton = styled.span`
