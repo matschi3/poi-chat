@@ -4,14 +4,14 @@ import {
   SearchClearButton,
 } from "./Search.styled";
 
-export default function Search({ handleSearch, searchQuery }) {
+export default function Search({ handleSearch, searchQuery, clearSearch }) {
   return (
     <StyledSearchContainer>
       <SearchInput
         onChange={(event) => handleSearch(event.target.value)}
         value={searchQuery}
       />
-      <SearchClearButton>×</SearchClearButton>
+      <SearchClearButton onClick={() => clearSearch()}>×</SearchClearButton>
     </StyledSearchContainer>
   );
 }
