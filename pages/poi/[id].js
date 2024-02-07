@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import PoiCard from "@/components/PoiCard";
 import { useState, useEffect } from "react";
@@ -40,6 +41,15 @@ export default function PoiDetailPage() {
 
   return (
     <>
+      <Head>
+        <title>POI-Chat // POI</title>
+        <meta
+          name="description"
+          content="Chat with like-minded and get connected right at your Point of Interest - Details of chosen Point of Interest"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header title={"POI"} backButton />
       <PoiCard poi={poi} />
     </>

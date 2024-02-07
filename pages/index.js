@@ -1,3 +1,4 @@
+import Head from "next/head";
 import PoiBlock from "@/components/PoiBlock/index.js";
 import { StyledBlockContainer } from "@/components/PoiBlock/PoiBlock.styled";
 import { useState, useEffect } from "react";
@@ -35,6 +36,15 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>POI-Chat // POIs</title>
+        <meta
+          name="description"
+          content="Chat with like-minded and get connected right at your Point of Interest - List of all available Points of Interest"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header
         title={"POIs"}
         leftButton={{ onClick: toggleSearch, text: "Suche" }}
