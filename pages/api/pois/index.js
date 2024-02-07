@@ -68,10 +68,14 @@ export default async function handler(request, response) {
       ).catch((error) => {
         console.error("Property creation error:", error);
       });
+      const deviceIds = newPoi.activities[0].devices.map(
+        (device) => device._id
+      );
+      const sportIds = newPoi.activities[0].sports.map((sport) => sport._id);
       const newActivity = {
         uuid: newPoi.activities[0].uuid,
-        devices: newPoi.activities[0].devices[0]._id,
-        sports: newPoi.activities[0].sports[0]._id,
+        devices: deviceIds,
+        sports: sportIds,
       };
       const createdActivities = await Activity.create(newActivity).catch(
         (error) => {
