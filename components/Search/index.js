@@ -1,4 +1,8 @@
-import { StyledSearchContainer, SearchInput } from "./Search.styled";
+import {
+  StyledSearchContainer,
+  SearchInput,
+  SearchClearButton,
+} from "./Search.styled";
 
 export default function Search({ handleSearch, searchQuery }) {
   return (
@@ -7,6 +11,7 @@ export default function Search({ handleSearch, searchQuery }) {
         onChange={(event) => handleSearch(event.target.value)}
         value={searchQuery}
       />
+      <SearchClearButton>×</SearchClearButton>
     </StyledSearchContainer>
   );
 }
