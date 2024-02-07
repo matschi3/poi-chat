@@ -147,7 +147,9 @@ export default function PoiForm({ onSubmit, formName }) {
       events: [],
     };
     onSubmit(newPoi);
-    Router.push("/");
+    setTimeout(() => {
+      Router.push("/");
+    }, 500);
   }
 
   return (
