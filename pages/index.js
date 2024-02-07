@@ -79,7 +79,8 @@ export default function Home() {
             renderedPois.map((poi) => <PoiBlock key={poi._id} poi={poi} />)
           )}
         </StyledBlockContainer>
-        {drawerIsActive ? <Drawer /> : <AddButton />}
+        {drawerIsActive && <Drawer />}
+        {!drawerIsActive && <AddButton onClick={openDrawer} />}
       </main>
     </>
   );
