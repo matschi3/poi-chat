@@ -101,9 +101,10 @@ export default function PoiCard({ poi }) {
     if (!response.ok) {
       throw new Error("Failed to delete POI. Check correct url");
     }
-    Router.push("/");
+    setTimeout(() => {
+      Router.push("/");
+    }, 500);
   }
-
   return (
     <StyledPoiCard>
       <StyledBackground />
