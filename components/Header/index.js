@@ -26,7 +26,7 @@ export default function Header({ title, leftButton, backButton }) {
       <StyledHeader>
         <HeaderLeft>
           {leftButton && (
-            <Button onClick={leftButton.function}>{leftButton.text}</Button>
+            <Button onClick={leftButton.onClick}>{leftButton.text}</Button>
           )}
           {backButton && <Button onClick={handleBack}>Zurück</Button>}
         </HeaderLeft>
