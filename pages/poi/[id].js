@@ -31,14 +31,6 @@ export default function PoiDetailPage() {
     }
   }, [id]);
 
-  if (loading) {
-    return <h2>Loading</h2>;
-  }
-
-  if (error) {
-    return <h2>Error: {error}</h2>;
-  }
-
   return (
     <>
       <Head>
@@ -51,7 +43,13 @@ export default function PoiDetailPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header title={"POI"} backButton />
-      <PoiCard poi={poi} />
+      {loading ? (
+        <h2>Loading</h2>
+      ) : error ? (
+        <h2>Error: {error}</h2>
+      ) : (
+        <PoiCard poi={poi} />
+      )}
     </>
   );
 }
