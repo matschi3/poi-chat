@@ -1,6 +1,11 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import PoiCard from "@/components/PoiCard";
+import {
+  StyledPoiCard,
+  StyledCardHeadingContainer,
+  StyledCardHeading,
+} from "@/components/PoiCard/PoiCard.styled";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 
@@ -44,9 +49,17 @@ export default function PoiDetailPage() {
       </Head>
       <Header title={"POI"} backButton />
       {loading ? (
-        <h2>Loading</h2>
+        <StyledPoiCard>
+          <StyledCardHeadingContainer>
+            <StyledCardHeading>Loading</StyledCardHeading>
+          </StyledCardHeadingContainer>
+        </StyledPoiCard>
       ) : error ? (
-        <h2>Error: {error}</h2>
+        <StyledPoiCard>
+          <StyledCardHeadingContainer>
+            <StyledCardHeading>Error: {error}</StyledCardHeading>
+          </StyledCardHeadingContainer>
+        </StyledPoiCard>
       ) : (
         <PoiCard poi={poi} />
       )}
