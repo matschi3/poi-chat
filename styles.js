@@ -19,11 +19,14 @@ export default createGlobalStyle`
     --color-gray2: #e8e8e8;
     --color-gray3: #bdbdbd;
     --color-primary: #5db075;
+    --color-warning: #ff6b6b;
 
     --size-mediumsmall: 14px;
     --size-medium: 16px;
     --size-mediumplus: 18px;
     --size-large: 30px;
+
+    --header-height: 60px;
   }
 
   body {

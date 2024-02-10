@@ -1,6 +1,13 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import PoiCard from "@/components/PoiCard";
+import {
+  StyledPoiCard,
+  StyledCardHeadingContainer,
+  StyledCardHeading,
+} from "@/components/PoiCard/PoiCard.styled";
 import { useState, useEffect } from "react";
+import Header from "@/components/Header";
 
 export default function PoiDetailPage() {
   const [poi, setPoi] = useState([]);
@@ -29,13 +36,33 @@ export default function PoiDetailPage() {
     }
   }, [id]);
 
-  if (loading) {
-    return <h2>Loading</h2>;
-  }
-
-  if (error) {
-    return <h2>Error: {error}</h2>;
-  }
-
-  return <PoiCard poi={poi} />;
+  return (
+    <>
+      <Head>
+        <title>POI-Chat // POI</title>
+        <meta
+          name="description"
+          content="Chat with like-minded and get connected right at your Point of Interest - Details of chosen Point of Interest"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Header title={"POI"} backButton />
+      {loading ? (
+        <StyledPoiCard>
+          <StyledCardHeadingContainer>
+            <StyledCardHeading>Loading</StyledCardHeading>
+          </StyledCardHeadingContainer>
+        </StyledPoiCard>
+      ) : error ? (
+        <StyledPoiCard>
+          <StyledCardHeadingContainer>
+            <StyledCardHeading>Error: {error}</StyledCardHeading>
+          </StyledCardHeadingContainer>
+        </StyledPoiCard>
+      ) : (
+        <PoiCard poi={poi} />
+      )}
+    </>
+  );
 }

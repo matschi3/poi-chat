@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const StyledPoiCard = styled.div`
   position: relative;
-  top: 60px;
   width: 100%;
-  border-top: solid 1px black;
+  top: var(--header-height);
 `;
 
 export const StyledCardImage = styled.div`
@@ -20,9 +19,9 @@ export const StyledCardImage = styled.div`
 
 export const StyledBackground = styled.div`
   position: absolute;
-  top: 0;
+  top: calc(-1 * var(--header-height));
   width: 100%;
-  height: 135px;
+  height: 195px;
   background-color: var(--color-primary);
 `;
 
