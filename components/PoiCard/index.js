@@ -18,9 +18,12 @@ import {
 } from "./PoiCard.styled";
 import React, { useState } from "react";
 import Router from "next/router";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
+
+  const { data: session } = useSession();
 
   async function deleteActivity(activityId) {
     const response = await fetch(`/api/activities/${activityId}`, {
@@ -189,10 +192,25 @@ export default function PoiCard({ poi }) {
                 );
               })}
             </StyledCardUl>
-            <button onClick={deletePoi}>Delete</button>
+            {session &&
+              (<button onClick={signOut}>Sign out</button>)(
+                <button onClick={deletePoi}>Delete</button>
+              )}
+            {!session && <button onClick={signIn}>Sign in</button>}
           </>
         )}
-        {activeTab === "chat" && <span>Chat is here</span>}
+        {activeTab === "chat" && session && (
+          <>
+            <button onClick={signOut}>Sign out</button>
+            <span>Chat is here, when finished. But you are allowed ✅</span>
+          </>
+        )}
+        {activeTab === "chat" && !session && (
+          <>
+            <button onClick={signIn}>Sign in</button>
+            <span>Chat is only for logged in users</span>
+          </>
+        )}
         {activeTab === "image" && <span>Fotos are here</span>}
       </StyledCardListContainer>
     </StyledPoiCard>
