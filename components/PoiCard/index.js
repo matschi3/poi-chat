@@ -192,10 +192,12 @@ export default function PoiCard({ poi }) {
                 );
               })}
             </StyledCardUl>
-            {session &&
-              (<button onClick={signOut}>Sign out</button>)(
+            {session && (
+              <>
+                <button onClick={signOut}>Sign out</button>
                 <button onClick={deletePoi}>Delete</button>
-              )}
+              </>
+            )}
             {!session && <button onClick={signIn}>Sign in</button>}
           </>
         )}
