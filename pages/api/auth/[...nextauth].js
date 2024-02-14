@@ -1,6 +1,31 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import DiscordProvider from "next-auth/providers/discord";
+import { CredentialsProvider } from "next-auth/providers/credentials";
+
+const providers = [];
+
+if (process.envv.VERCEL_ENV === "preview") {
+  providers.push(
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Username", type: "text", placeholder: "username" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (
+          credentials.username === "admin" &&
+          credentials.password === "letmepass"
+        ) {
+          return { id: 1, name: "Admin", email: "test@mailprovider.com" };
+        } else {
+          return null;
+        }
+      },
+    })
+  );
+}
 
 export default NextAuth({
   providers: [
