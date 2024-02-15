@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as FooterPlaceholder } from "@public/nav-placeholder.svg";
-import { ReactComponent as FooterNavProfile } from "@public/nav-profile.svg";
+import { ReactComponent as FooterNavProfile } from "../../src/nav-profile.svg";
+import { ReactComponent as FooterPlaceholder } from "../../src/nav-placeholder.svg";
 
 export const StyledFooter = styled.footer`
   position: fixed;
@@ -10,6 +10,10 @@ export const StyledFooter = styled.footer`
   background-color: var(--color-gray3);
 `;
 
-export const StyledPlaceholder = styled(FooterPlaceholder)``;
+export const StyledPlaceholder = styled(FooterPlaceholder)`
+  font-size: 50px;
+`;
 
-export const StyledNavProfile = styled(FooterNavProfile)``;
+export const StyledNavProfile = styled(FooterNavProfile)`
+  font-size: 50px;
+`;
