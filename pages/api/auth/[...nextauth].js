@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import DiscordProvider from "next-auth/providers/discord";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const providers = [];
@@ -30,10 +29,6 @@ if (process.env.VERCEL_ENV === "preview") {
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-    }),
-    DiscordProvider({
-      clientId: process.env.DISCORD_ID,
-      clientSecret: process.env.DISCORD_SECRET,
     })
   );
 }
