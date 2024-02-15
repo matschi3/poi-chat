@@ -1,5 +1,14 @@
-import { StyledFooter } from "./Footer.styled";
+import {
+  StyledFooter,
+  StyledPlaceholder,
+  StyledNavProfile,
+} from "./Footer.styled";
 
 export default function Footer() {
-  return <StyledFooter />;
+  return (
+    <StyledFooter>
+      <StyledPlaceholder />
+      <StyledNavProfile />
+    </StyledFooter>
+  );
 }
