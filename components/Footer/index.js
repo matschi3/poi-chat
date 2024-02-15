@@ -8,6 +8,9 @@ export default function Footer() {
   return (
     <StyledFooter>
       <StyledPlaceholder />
+      <StyledPlaceholder />
+      <StyledPlaceholder />
+      <StyledPlaceholder />
       <StyledNavProfile />
     </StyledFooter>
   );
