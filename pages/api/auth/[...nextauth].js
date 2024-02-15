@@ -5,7 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 const providers = [];
 
-if (process.envv.VERCEL_ENV === "preview") {
+if (process.env.VERCEL_ENV === "preview") {
   providers.push(
     CredentialsProvider({
       name: "Credentials",
