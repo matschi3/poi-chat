@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Search from "@/components/Search";
 import AddButton from "@/components/AddButton";
 import Drawer from "@/components/Drawer";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [pois, setPois] = useState([]);
@@ -82,6 +83,7 @@ export default function Home() {
         {drawerIsActive && <Drawer closeDrawer={closeDrawer} />}
         {!drawerIsActive && <AddButton onClick={openDrawer} />}
       </main>
+      <Footer />
     </>
   );
 }
