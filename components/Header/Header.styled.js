@@ -5,6 +5,7 @@ export const StyledHeader = styled.header`
   width: 100%;
   height: var(--header-height);
   position: fixed;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
