@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import FooterNavPlaceholder from "../../src/nav-placeholder.svg";
 import FooterNavProfile from "../../src/nav-profile.svg";
+import Router from "next/router";
 
 export const StyledFooter = styled.footer`
   position: fixed;
@@ -18,7 +19,9 @@ export const StyledPlaceholder = styled(FooterPlaceholder)`
   font-size: 50px;
 `;
 
-const FooterProfile = () => <FooterNavProfile />;
+const FooterProfile = () => (
+  <FooterNavProfile onClick={() => Router.push("/profile")} />
+);
 
 export const StyledNavProfile = styled(FooterProfile)`
   font-size: 50px;
