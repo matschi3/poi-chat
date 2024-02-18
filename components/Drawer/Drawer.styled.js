@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const DrawerContainer = styled.div`
   position: fixed;
-  bottom: 0;
+  bottom: var(--header-height);
   left: 0;
   right: 0;
   height: 140px;

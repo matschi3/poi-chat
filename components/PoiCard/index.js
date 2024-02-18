@@ -137,7 +137,7 @@ export default function PoiCard({ poi }) {
                 setActiveTab("chat");
               }}
             >
-              Chat
+              Chat//Event
             </StyledCardTabItemLabel>
           </StyledCardTabItem>
           <StyledCardTabItem>
