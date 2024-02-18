@@ -6,7 +6,8 @@ const providers = [];
 
 if (
   process.env.VERCEL_ENV === "preview" ||
-  process.env.VERCEL_ENV === "development"
+  process.env.VERCEL_ENV === "development" ||
+  process.env.VERCEL_ENV === "production"
 ) {
   providers.push(
     CredentialsProvider({
