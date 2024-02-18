@@ -2,6 +2,7 @@ import styled from "styled-components";
 import FooterNavLogin from "../../src/nav-login.svg";
 import FooterNavPlaceholder from "../../src/nav-placeholder.svg";
 import FooterNavHome from "../../src/nav-home.svg";
+import FooterNavBokmarks from "../../src/nav-bookmark.svg";
 import FooterNavProfile from "../../src/nav-profile.svg";
 import Router from "next/router";
 import { signIn } from "next-auth/react";
@@ -22,7 +23,6 @@ const FooterLogin = () => (
     <StyledNavLoginText>Login für alle Funktionen</StyledNavLoginText>
   </StyledNavLoginContainer>
 );
-
 export const StyledNavLoginContainer = styled.article`
   display: flex;
   flex-direction: row;
@@ -37,21 +37,25 @@ export const StyledNavLoginText = styled.p`
 `;
 
 const FooterPlaceholder = () => <FooterNavPlaceholder />;
-
 export const StyledPlaceholder = styled(FooterPlaceholder)`
   font-size: 50px;
 `;
 
 const FooterHome = () => <FooterNavHome onClick={() => Router.push("/")} />;
-
 export const StyledNavHome = styled(FooterHome)`
+  font-size: 50px;
+`;
+
+const FooterBookmarks = () => (
+  <FooterNavBokmarks onClick={() => Router.push("/bookmarks")} />
+);
+export const StyledNavBookmarks = styled(FooterBookmarks)`
   font-size: 50px;
 `;
 
 const FooterProfile = () => (
   <FooterNavProfile onClick={() => Router.push("/profile")} />
 );
-
 export const StyledNavProfile = styled(FooterProfile)`
   font-size: 50px;
 `;
