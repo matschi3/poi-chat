@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import FooterNavPlaceholder from "../../src/nav-placeholder.svg";
+import FooterNavLogin from "../../src/nav-login.svg";
 import FooterNavProfile from "../../src/nav-profile.svg";
 import Router from "next/router";
+import { signIn } from "next-auth/react";
 
 export const StyledFooter = styled.footer`
   position: fixed;
@@ -11,6 +13,26 @@ export const StyledFooter = styled.footer`
   background-color: var(--color-gray3);
   display: flex;
   justify-content: space-around;
+`;
+
+const FooterLogin = () => (
+  <StyledNavLoginContainer onClick={() => signIn()}>
+    <FooterNavLogin />
+    <StyledNavLoginText>Login für alle Funktionen</StyledNavLoginText>
+  </StyledNavLoginContainer>
+);
+
+export const StyledNavLoginContainer = styled.article`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+export const StyledNavLogin = styled(FooterLogin)`
+  font-size: 50px;
+`;
+export const StyledNavLoginText = styled.p`
+  font-size: 20px;
+  margin: auto;
 `;
 
 const FooterPlaceholder = () => <FooterNavPlaceholder />;
