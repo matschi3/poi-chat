@@ -21,7 +21,7 @@ export default function Footer() {
       <StyledFooter>
         <StyledNavHome />
         <StyledNavNearby />
-        <StyledNavNew />
+        <StyledNavNew color={"var(--color-primary)"} />
         <StyledNavBookmarks />
         <StyledNavProfile />
       </StyledFooter>

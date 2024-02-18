@@ -53,10 +53,10 @@ export const StyledNavNearby = styled(FooterNearby)`
   font-size: 50px;
 `;
 
-const FooterNew = () => (
+const FooterNew = ({ color }) => (
   <FooterNavNew
     onClick={() => console.log("new POI")}
-    fill={"var(--color-primary)"}
+    fill={color ? `${color}` : "var(--color-gray3)"}
   />
 );
 export const StyledNavNew = styled(FooterNew)`
