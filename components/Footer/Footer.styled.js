@@ -3,6 +3,7 @@ import FooterNavLogin from "../../src/nav-login.svg";
 import FooterNavPlaceholder from "../../src/nav-placeholder.svg";
 import FooterNavHome from "../../src/nav-home.svg";
 import FooterNavNearby from "../../src/nav-location.svg";
+import FooterNavNew from "../../src/nav-new.svg";
 import FooterNavBokmarks from "../../src/nav-bookmark.svg";
 import FooterNavProfile from "../../src/nav-profile.svg";
 import Router from "next/router";
@@ -50,6 +51,17 @@ export const StyledNavHome = styled(FooterHome)`
 const FooterNearby = () => <FooterNavNearby onClick={() => Router.push("/")} />;
 export const StyledNavNearby = styled(FooterNearby)`
   font-size: 50px;
+`;
+
+const FooterNew = () => (
+  <FooterNavNew
+    onClick={() => console.log("new POI")}
+    fill={"var(--color-primary)"}
+  />
+);
+export const StyledNavNew = styled(FooterNew)`
+  font-size: 50px;
+  ${(props) => props.$fill && `fill: ${props.$fill};`};
 `;
 
 const FooterBookmarks = () => (
