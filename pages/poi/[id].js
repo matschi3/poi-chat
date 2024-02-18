@@ -8,6 +8,7 @@ import {
 } from "@/components/PoiCard/PoiCard.styled";
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function PoiDetailPage() {
   const [poi, setPoi] = useState([]);
@@ -63,6 +64,7 @@ export default function PoiDetailPage() {
       ) : (
         <PoiCard poi={poi} />
       )}
+      <Footer />
     </>
   );
 }
