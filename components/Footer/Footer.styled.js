@@ -2,6 +2,7 @@ import styled from "styled-components";
 import FooterNavLogin from "../../src/nav-login.svg";
 import FooterNavPlaceholder from "../../src/nav-placeholder.svg";
 import FooterNavHome from "../../src/nav-home.svg";
+import FooterNavNearby from "../../src/nav-location.svg";
 import FooterNavBokmarks from "../../src/nav-bookmark.svg";
 import FooterNavProfile from "../../src/nav-profile.svg";
 import Router from "next/router";
@@ -43,6 +44,11 @@ export const StyledPlaceholder = styled(FooterPlaceholder)`
 
 const FooterHome = () => <FooterNavHome onClick={() => Router.push("/")} />;
 export const StyledNavHome = styled(FooterHome)`
+  font-size: 50px;
+`;
+
+const FooterNearby = () => <FooterNavNearby onClick={() => Router.push("/")} />;
+export const StyledNavNearby = styled(FooterNearby)`
   font-size: 50px;
 `;
 
