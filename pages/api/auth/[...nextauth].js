@@ -4,7 +4,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 const providers = [];
 
-if (process.env.VERCEL_ENV === "preview") {
+if (
+  process.env.VERCEL_ENV === "preview" ||
+  process.env.VERCEL_ENV === "development"
+) {
   providers.push(
     CredentialsProvider({
       name: "Credentials",
@@ -14,8 +17,8 @@ if (process.env.VERCEL_ENV === "preview") {
       },
       async authorize(credentials) {
         if (
-          credentials.username === "admin" &&
-          credentials.password === "letmepass"
+          credentials.username === process.env.TESTUSER_ID &&
+          credentials.password === process.env.TESTUSER_SECRET
         ) {
           return { id: "1", name: "Admin", email: "test@mailprovider.com" };
         } else {
