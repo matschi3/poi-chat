@@ -1,7 +1,6 @@
 import {
   StyledFooter,
   StyledNavLogin,
-  StyledPlaceholder,
   StyledNavHome,
   StyledNavNearby,
   StyledNavNew,
