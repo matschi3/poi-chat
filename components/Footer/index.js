@@ -3,6 +3,7 @@ import {
   StyledNavLogin,
   StyledPlaceholder,
   StyledNavHome,
+  StyledNavBookmarks,
   StyledNavProfile,
 } from "./Footer.styled";
 import { useSession } from "next-auth/react";
@@ -19,7 +20,7 @@ export default function Footer() {
         <StyledNavHome />
         <StyledPlaceholder />
         <StyledPlaceholder />
-        <StyledPlaceholder />
+        <StyledNavBookmarks />
         <StyledNavProfile />
       </StyledFooter>
     );
