@@ -48,7 +48,9 @@ export const StyledNavHome = styled(FooterHome)`
   font-size: 50px;
 `;
 
-const FooterNearby = () => <FooterNavNearby onClick={() => Router.push("/")} />;
+const FooterNearby = () => (
+  <FooterNavNearby onClick={() => Router.push("/nearby")} />
+);
 export const StyledNavNearby = styled(FooterNearby)`
   font-size: 50px;
 `;
