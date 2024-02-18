@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import FooterNavPlaceholder from "../../src/nav-placeholder.svg";
 import FooterNavLogin from "../../src/nav-login.svg";
+import FooterNavPlaceholder from "../../src/nav-placeholder.svg";
+import FooterNavHome from "../../src/nav-home.svg";
 import FooterNavProfile from "../../src/nav-profile.svg";
 import Router from "next/router";
 import { signIn } from "next-auth/react";
@@ -38,6 +39,12 @@ export const StyledNavLoginText = styled.p`
 const FooterPlaceholder = () => <FooterNavPlaceholder />;
 
 export const StyledPlaceholder = styled(FooterPlaceholder)`
+  font-size: 50px;
+`;
+
+const FooterHome = () => <FooterNavHome onClick={() => Router.push("/")} />;
+
+export const StyledNavHome = styled(FooterHome)`
   font-size: 50px;
 `;
 
