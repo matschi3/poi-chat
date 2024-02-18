@@ -1,8 +1,9 @@
 import {
   StyledFooter,
-  StyledPlaceholder,
-  StyledNavProfile,
   StyledNavLogin,
+  StyledPlaceholder,
+  StyledNavHome,
+  StyledNavProfile,
 } from "./Footer.styled";
 import { useSession } from "next-auth/react";
 
@@ -15,7 +16,7 @@ export default function Footer() {
   if (session) {
     return (
       <StyledFooter>
-        <StyledPlaceholder />
+        <StyledNavHome />
         <StyledPlaceholder />
         <StyledPlaceholder />
         <StyledPlaceholder />
