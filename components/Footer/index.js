@@ -3,6 +3,7 @@ import {
   StyledNavLogin,
   StyledPlaceholder,
   StyledNavHome,
+  StyledNavNearby,
   StyledNavBookmarks,
   StyledNavProfile,
 } from "./Footer.styled";
@@ -18,7 +19,7 @@ export default function Footer() {
     return (
       <StyledFooter>
         <StyledNavHome />
-        <StyledPlaceholder />
+        <StyledNavNearby />
         <StyledPlaceholder />
         <StyledNavBookmarks />
         <StyledNavProfile />
