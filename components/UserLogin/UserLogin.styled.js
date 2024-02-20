@@ -59,3 +59,20 @@ const StyledProviderButton = styled.button`
   transition: all 0.1s ease-in-out;
   width: 100%;
 `;
+
+export const StyledDivider = styled.hr`
+  border: 0;
+  border-top: 1px solid var(--color-gray3);
+  margin: 2rem auto 1rem;
+  overflow: visible;
+  ${(props) =>
+    props.$text &&
+    `&::before {
+                  position: relative;
+                  padding: 0 0.4rem;
+                  top: -0.7rem;
+                  color: var(--color-gray3);
+                  background-color: var(--color-gray5);
+                  content: "${props.$text}";
+          }`}
+`;
