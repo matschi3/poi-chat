@@ -23,6 +23,23 @@ export const StyledLoginCard = styled.div`
   padding: 1.25rem 2rem;
 `;
 
+const StyledProviderButton = styled.button`
+  align-items: center;
+  background-color: ${(props) => props.$backcolor || "var(--color-gray5)"};
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  color: ${(props) => props.$textcolor || "var(--color-gray3)"};
+  display: flex;
+  font-size: 1.1rem;
+  font-weight: 500;
+  justify-content: space-evenly;
+  min-height: 62px;
+  padding: 0.75rem 1rem;
+  position: relative;
+  transition: all 0.1s ease-in-out;
+  width: 100%;
+`;
+
 export const ProviderButton = ({ provider, $backcolor, $textcolor }) => {
   const loverCaseProvider = provider.toLowerCase();
   return (
@@ -42,23 +59,6 @@ export const ProviderButton = ({ provider, $backcolor, $textcolor }) => {
     </StyledProviderButton>
   );
 };
-
-const StyledProviderButton = styled.button`
-  align-items: center;
-  background-color: ${(props) => props.$backcolor || "var(--color-gray5)"};
-  border-color: rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  color: ${(props) => props.$textcolor || "var(--color-gray3)"};
-  display: flex;
-  font-size: 1.1rem;
-  font-weight: 500;
-  justify-content: space-evenly;
-  min-height: 62px;
-  padding: 0.75rem 1rem;
-  position: relative;
-  transition: all 0.1s ease-in-out;
-  width: 100%;
-`;
 
 export const StyledDivider = styled.hr`
   border: 0;
