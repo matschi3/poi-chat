@@ -28,7 +28,7 @@ export default function LoginPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header title={"Login"} backButton />
-      <UserLogin />
+      <UserLogin purpose="login" />
       <Footer />
     </>
   );
