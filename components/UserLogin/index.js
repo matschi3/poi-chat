@@ -5,7 +5,7 @@ import {
   ProviderButton,
   StyledDivider,
 } from "./UserLogin.styled";
-import UserLoginForm from "@components/UserLoginForm";
+import UserLoginForm from "../UserLoginForm";
 
 export default function UserLogin() {
   return (
