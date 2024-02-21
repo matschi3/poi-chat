@@ -4,7 +4,8 @@ import {
   StyledLabel,
   StyledInput,
 } from "./UserLoginForm.styled";
-import { StyledProviderButton } from "../UserLoginForm/UserLoginForm.styled";
+import { StyledProviderButton } from "../UserLogin/UserLogin.styled";
+import { signIn } from "next-auth/react";
 
 export default function UserLoginForm() {
   const handleSignIn = async (event) => {
@@ -13,10 +14,11 @@ export default function UserLoginForm() {
     const data = Object.fromEntries(formData);
     console.log("sign in with credentials");
     console.log(data.email);
-    signIn("credentials", { callbackUrl: "/" });
+    console.log(data.password);
+    /* signIn("credentials", { callbackUrl: "/" }); */
   };
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSignIn}>
       <StyledInputContainer>
         <StyledLabel htmlFor="email">Email</StyledLabel>
         <StyledInput
@@ -31,7 +33,7 @@ export default function UserLoginForm() {
         <StyledInput type="password" id="password" name="password" />
       </StyledInputContainer>
       <StyledProviderButton
-        onClick={handleSignIn}
+        type="submit"
         provider="Credentials"
         $backcolor="var(--color-gray3)"
         $textcolor="var(--color-black)"
