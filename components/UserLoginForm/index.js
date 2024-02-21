@@ -13,10 +13,7 @@ export default function UserLoginForm({ purpose }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log("sign in with credentials");
-    console.log(data.email);
-    console.log(data.password);
-    /* signIn("credentials", { callbackUrl: "/" }); */
+    signIn("credentials", { callbackUrl: "/", ...data });
   };
 
   const handleRegister = async (event) => {
