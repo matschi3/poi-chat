@@ -6,6 +6,7 @@ import {
 } from "./UserLoginForm.styled";
 import { StyledProviderButton } from "../UserLogin/UserLogin.styled";
 import { signIn } from "next-auth/react";
+import Router from "next/router";
 
 export default function UserLoginForm({ purpose }) {
   const handleSignIn = async (event) => {
@@ -42,6 +43,15 @@ export default function UserLoginForm({ purpose }) {
         >
           <span>Sign in with Email & Password</span>
         </StyledProviderButton>
+        <StyledProviderButton
+          onClick={() => Router.push("/user/register")}
+          provider="Credentials"
+          $backcolor="var(--color-gray4)"
+          $textcolor="var(--color-warning)"
+          style={{ marginTop: "1rem" }}
+        >
+          <span>NEW? Register Account here</span>
+        </StyledProviderButton>
       </StyledForm>
     );
   } else if (purpose === "register") {
@@ -71,6 +81,10 @@ export default function UserLoginForm({ purpose }) {
       </StyledForm>
     );
   } else {
-    return <p>missing purpose @ UserLoginForm</p>;
+    return (
+      <p style={{ color: "var(--color-warning)" }}>
+        missing purpose @ UserLoginForm
+      </p>
+    );
   }
 }
