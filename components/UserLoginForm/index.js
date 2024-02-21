@@ -18,7 +18,14 @@ export default function UserLoginForm({ purpose }) {
     console.log(data.password);
     /* signIn("credentials", { callbackUrl: "/" }); */
   };
-  const handleRegister = async (event) => {};
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    console.log("register with credentials");
+    console.log(data.email);
+    console.log(data.password);
+  };
   if (purpose === "login") {
     return (
       <StyledForm onSubmit={handleSignIn}>
