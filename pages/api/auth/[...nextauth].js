@@ -1,6 +1,10 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { Account, User as AuthUser } from "next-auth";
+import User from "@/db/models/User";
+import dbConnect from "@/db/connect";
+import bcrypt from "bcryptjs";
 
 const providers = [];
 
@@ -30,6 +34,31 @@ if (
   );
 } else {
   providers.push(
+    CredentialsProvider({
+      id: "credentials",
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text", placeholder: "email" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        await dbConnect();
+        try {
+          const user = await User.findOne({ email: credentials.email });
+          if (user) {
+            const isPasswordCorrect = await bcrypt.compare(
+              credentials.password,
+              user.password
+            );
+            if (isPasswordCorrect) {
+              return user;
+            }
+          }
+        } catch (error) {
+          throw new Error(error);
+        }
+      },
+    }),
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
