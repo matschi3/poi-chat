@@ -18,14 +18,28 @@ export default function UserLoginForm({ purpose }) {
     console.log(data.password);
     /* signIn("credentials", { callbackUrl: "/" }); */
   };
+
   const handleRegister = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log("register with credentials");
-    console.log(data.email);
-    console.log(data.password);
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      console.log("User is created");
+      Router.push("/user/login");
+    } else if (response.status === 400) {
+      console.log("Email is already in use");
+    } else {
+      console.log("Error", response.error);
+    }
   };
+
   if (purpose === "login") {
     return (
       <StyledForm onSubmit={handleSignIn}>
