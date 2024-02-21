@@ -23,7 +23,7 @@ export const StyledLoginCard = styled.div`
   padding: 1.25rem 2rem;
 `;
 
-const StyledProviderButton = styled.button`
+export const StyledProviderButton = styled.button`
   align-items: center;
   background-color: ${(props) => props.$backcolor || "var(--color-gray5)"};
   border-color: rgba(0, 0, 0, 0.1);
