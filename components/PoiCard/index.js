@@ -15,6 +15,7 @@ import {
   StyledCardLiDot,
   StyledCardLiIndication,
   StyledCardDivider,
+  StyledBottomSpacer,
 } from "./PoiCard.styled";
 import React, { useState } from "react";
 import Router from "next/router";
@@ -209,11 +210,12 @@ export default function PoiCard({ poi }) {
         )}
         {activeTab === "chat" && !session && (
           <>
-            <button onClick={signIn}>Sign in</button>
+            <button onClick={() => Router.push("/user/login")}>Sign in</button>
             <span>Chat is only for logged in users</span>
           </>
         )}
         {activeTab === "image" && <span>Fotos are here</span>}
+        <StyledBottomSpacer />
       </StyledCardListContainer>
     </StyledPoiCard>
   );
