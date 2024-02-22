@@ -13,7 +13,11 @@ export default function UserLoginForm({ purpose }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    signIn("credentials", { callbackUrl: "/", ...data });
+    try {
+      await signIn("credentials", { callbackUrl: "/", ...data });
+    } catch (error) {
+      console.error("Error", error);
+    }
   };
 
   const handleRegister = async (event) => {
@@ -33,44 +37,46 @@ export default function UserLoginForm({ purpose }) {
     } else if (response.status === 400) {
       console.log("Email is already in use");
     } else {
-      console.log("Error", response.error);
+      console.log("Error", response.json());
     }
   };
 
   if (purpose === "login") {
     return (
-      <StyledForm onSubmit={handleSignIn}>
-        <StyledInputContainer>
-          <StyledLabel htmlFor="email">Email</StyledLabel>
-          <StyledInput
-            type="email"
-            id="email"
-            name="email"
-            placeholder="mail@provider.com"
-          />
-        </StyledInputContainer>
-        <StyledInputContainer>
-          <StyledLabel htmlFor="password">Password</StyledLabel>
-          <StyledInput type="password" id="password" name="password" />
-        </StyledInputContainer>
+      <>
+        <StyledForm onSubmit={handleSignIn}>
+          <StyledInputContainer>
+            <StyledLabel htmlFor="email">Email</StyledLabel>
+            <StyledInput
+              type="email"
+              id="email"
+              name="email"
+              placeholder="mail@provider.com"
+            />
+          </StyledInputContainer>
+          <StyledInputContainer>
+            <StyledLabel htmlFor="password">Password</StyledLabel>
+            <StyledInput type="password" id="password" name="password" />
+          </StyledInputContainer>
+          <StyledProviderButton
+            type="submit"
+            provider="Credentials"
+            $backcolor="var(--color-gray3)"
+            $textcolor="var(--color-black)"
+          >
+            <span>Sign in with Email & Password</span>
+          </StyledProviderButton>
+        </StyledForm>
         <StyledProviderButton
-          type="submit"
-          provider="Credentials"
-          $backcolor="var(--color-gray3)"
-          $textcolor="var(--color-black)"
-        >
-          <span>Sign in with Email & Password</span>
-        </StyledProviderButton>
-        <StyledProviderButton
+          type="button"
           onClick={() => Router.push("/user/register")}
-          provider="Credentials"
           $backcolor="var(--color-gray4)"
           $textcolor="var(--color-warning)"
           style={{ marginTop: "1rem" }}
         >
           <span>NEW? Register Account here</span>
         </StyledProviderButton>
-      </StyledForm>
+      </>
     );
   } else if (purpose === "register") {
     return (
