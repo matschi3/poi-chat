@@ -9,9 +9,9 @@ import bcrypt from "bcryptjs";
 const providers = [];
 
 if (
-  process.env.VERCEL_ENV === "preview" ||
-  process.env.VERCEL_ENV === "development" ||
-  process.env.VERCEL_ENV === "production"
+  process.env.VERCEL_ENV === "paused-preview" ||
+  process.env.VERCEL_ENV === "paused-development" ||
+  process.env.VERCEL_ENV === "paused-production"
 ) {
   providers.push(
     CredentialsProvider({
