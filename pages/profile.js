@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
+import Router from "next/router";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -22,7 +23,7 @@ export default function ProfilePage() {
         {!session && (
           <div>
             <p>Bitte logge dich ein, um dein Profil zu sehen.</p>
-            <button onClick={signIn}>Login</button>
+            <button onClick={() => Router.push("/user/login")}>Login</button>
           </div>
         )}
         {session && (
