@@ -23,8 +23,29 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
+  const [userRole, setUserRole] = useState("user");
 
   const { data: session } = useSession();
+
+  async function checkUserRole(email) {
+    const response = await fetch(`/api/user/${email}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("data", data);
+      setUserRole(data.role);
+    } else {
+      return;
+    }
+  }
+  if (session) {
+    const userEmail = session?.user.email;
+    checkUserRole(userEmail);
+  }
 
   async function deleteActivity(activityId) {
     const response = await fetch(`/api/activities/${activityId}`, {
@@ -196,7 +217,9 @@ export default function PoiCard({ poi }) {
             {session && (
               <>
                 <button onClick={signOut}>Sign out</button>
-                <button onClick={deletePoi}>Delete</button>
+                {userRole === "admin" && (
+                  <button onClick={deletePoi}>Delete</button>
+                )}
               </>
             )}
             {!session && <button onClick={signIn}>Sign in</button>}
