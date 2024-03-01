@@ -10,6 +10,7 @@ const userSchema = new Schema(
     role: { type: String, required: true, default: "user" },
     favorites: { type: [Schema.Types.ObjectId], ref: "Poi" },
     lastCoordinates: { type: [Array], required: false },
+    preferredLogin: { type: String, required: false, default: "credentials" },
   },
   {
     timestamps: true,
