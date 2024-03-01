@@ -11,7 +11,7 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (session?.status === "authenticated") {
-      router.push("/");
+      router.replace("/");
     }
   }, [session, router]);
 
