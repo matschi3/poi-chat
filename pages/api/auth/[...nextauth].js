@@ -82,6 +82,7 @@ const callbacks = {
         if (!existingUser) {
           const newUser = new User({
             email: user.email,
+            preferredLogin: account.provider,
           });
           await newUser.save();
           return true;
