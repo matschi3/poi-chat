@@ -6,7 +6,7 @@ export const DrawerContainer = styled.div`
   left: 0;
   right: 0;
   height: 140px;
-  width: 100vw;
+  width: min(80%, 300px);
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -25,7 +25,7 @@ export const DrawerFocus = styled.div`
 
 export const StyledDrawer = styled.div`
   height: 140px;
-  width: min(80%, 300px);
+  width: 100%;
   background-color: var(--color-gray2);
   border-radius: 16px 16px 0 0;
   border: 2px solid var(--color-gray3);
