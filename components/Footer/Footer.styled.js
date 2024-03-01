@@ -16,6 +16,7 @@ export const StyledFooter = styled.footer`
   background-color: var(--color-gray3);
   display: flex;
   justify-content: space-around;
+  z-index: 10;
 `;
 
 const FooterLogin = () => (
@@ -54,9 +55,9 @@ export const StyledNavNearby = styled(FooterNearby)`
   font-size: 50px;
 `;
 
-const FooterNew = ({ color }) => (
+const FooterNew = ({ color, onClick }) => (
   <FooterNavNew
-    onClick={() => console.log("new POI")}
+    onClick={() => onClick()}
     fill={color ? `${color}` : "var(--color-gray3)"}
   />
 );
