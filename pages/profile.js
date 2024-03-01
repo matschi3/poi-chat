@@ -28,7 +28,10 @@ export default function ProfilePage() {
         )}
         {session && (
           <div>
-            <p>Willkommen zurück, {session.user.name}!</p>
+            <p>
+              Willkommen zurück
+              {session.user.name ? `, ${session.user.name}!` : "!"}
+            </p>
             <p>Deine E-Mail-Adresse: {session.user.email}</p>
             <button onClick={() => signOut({ callbackUrl: "/" })}>
               Logout
