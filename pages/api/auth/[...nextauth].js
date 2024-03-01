@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { Account, User as AuthUser } from "next-auth";
 import User from "@/db/models/User";
 import dbConnect from "@/db/connect";
 import bcrypt from "bcryptjs";
@@ -71,6 +70,30 @@ if (
   );
 }
 
+const callbacks = {
+  async signIn({ user, account }) {
+    if (account?.provider === "credentials") {
+      return true;
+    }
+    if (account?.provider === "github") {
+      await dbConnect();
+      try {
+        const existingUser = await User.findOne({ email: user.email });
+        if (!existingUser) {
+          const newUser = new User({
+            email: user.email,
+          });
+          await newUser.save();
+          return true;
+        }
+        return true;
+      } catch (error) {
+        console.log("error saving user to db", error);
+      }
+    }
+  },
+};
+
 export const authOptions = { providers };
 
-export default NextAuth(authOptions);
+export default NextAuth({ ...authOptions, callbacks });
