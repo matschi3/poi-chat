@@ -25,7 +25,12 @@ if (
           credentials.username === process.env.TESTUSER_ID &&
           credentials.password === process.env.TESTUSER_SECRET
         ) {
-          return { id: "1", name: "Admin", email: "test@mailprovider.com" };
+          return {
+            id: "1",
+            name: "Admin",
+            email: "test@mailprovider.com",
+            role: "admin",
+          };
         } else {
           return null;
         }
