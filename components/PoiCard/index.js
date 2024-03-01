@@ -36,7 +36,6 @@ export default function PoiCard({ poi }) {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log("data", data);
       setUserRole(data.role);
     } else {
       return;
