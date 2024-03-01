@@ -30,7 +30,9 @@ export default function ProfilePage() {
           <div>
             <p>Willkommen zurück, {session.user.name}!</p>
             <p>Deine E-Mail-Adresse: {session.user.email}</p>
-            <button onClick={signOut}>Logout</button>
+            <button onClick={() => signOut({ callbackUrl: "/" })}>
+              Logout
+            </button>
           </div>
         )}
       </main>
