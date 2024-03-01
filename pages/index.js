@@ -7,6 +7,7 @@ import Search from "@/components/Search";
 import AddButton from "@/components/AddButton";
 import Drawer from "@/components/Drawer";
 import Footer from "@/components/Footer";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const [pois, setPois] = useState([]);
@@ -22,6 +23,11 @@ export default function Home() {
     }
     fetchPois();
   }, []);
+
+  const { data: session, status } = useSession();
+  if (status === "loading") {
+    return null;
+  }
 
   const toggleSearch = () => {
     setSearchIsActive(!searchIsActive);
@@ -80,8 +86,14 @@ export default function Home() {
             renderedPois.map((poi) => <PoiBlock key={poi._id} poi={poi} />)
           )}
         </StyledBlockContainer>
-        {drawerIsActive && <Drawer closeDrawer={closeDrawer} />}
-        {!drawerIsActive && <AddButton onClick={openDrawer} />}
+        {!session ? (
+          <>
+            {drawerIsActive && <Drawer closeDrawer={closeDrawer} />}
+            {!drawerIsActive && <AddButton onClick={openDrawer} />}
+          </>
+        ) : (
+          ""
+        )}
       </main>
       <Footer />
     </>
