@@ -19,7 +19,7 @@ import {
 } from "./PoiCard.styled";
 import React, { useState } from "react";
 import Router from "next/router";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
@@ -213,30 +213,21 @@ export default function PoiCard({ poi }) {
                 );
               })}
             </StyledCardUl>
-            {session && (
-              <>
-                <button onClick={signOut}>Sign out</button>
-                {userRole === "admin" && (
-                  <button onClick={deletePoi}>Delete</button>
-                )}
-              </>
+            {session && userRole === "admin" && (
+              <button onClick={deletePoi}>Delete</button>
             )}
-            {!session && <button onClick={signIn}>Sign in</button>}
           </>
         )}
         {activeTab === "chat" && session && (
-          <>
-            <button onClick={signOut}>Sign out</button>
-            <span>Chat is here, when finished. But you are allowed ✅</span>
-          </>
+          <span>Chat is here, when finished. But you are allowed ✅</span>
         )}
         {activeTab === "chat" && !session && (
-          <>
-            <button onClick={() => Router.push("/user/login")}>Sign in</button>
-            <span>Chat is only for logged in users</span>
-          </>
+          <span>Chat is only for logged in users</span>
         )}
-        {activeTab === "image" && <span>Fotos are here</span>}
+        {activeTab === "image" && session && <span>Fotos are here</span>}
+        {activeTab === "image" && !session && (
+          <span>Fotos are only for logged in users</span>
+        )}
         <StyledBottomSpacer />
       </StyledCardListContainer>
     </StyledPoiCard>
