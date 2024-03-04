@@ -28,7 +28,7 @@ export default function PoiCard({ poi }) {
   const { data: session } = useSession();
 
   async function checkUserRole(email) {
-    const response = await fetch(`/api/user/${email}`, {
+    const response = await fetch(`/api/user/role/${email}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
