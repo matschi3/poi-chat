@@ -7,7 +7,6 @@ import FooterNavNew from "../../src/nav-new.svg";
 import FooterNavBokmarks from "../../src/nav-bookmark.svg";
 import FooterNavProfile from "../../src/nav-profile.svg";
 import Router from "next/router";
-import { signIn } from "next-auth/react";
 
 export const StyledFooter = styled.footer`
   position: fixed;
@@ -17,10 +16,11 @@ export const StyledFooter = styled.footer`
   background-color: var(--color-gray3);
   display: flex;
   justify-content: space-around;
+  z-index: 10;
 `;
 
 const FooterLogin = () => (
-  <StyledNavLoginContainer onClick={() => signIn()}>
+  <StyledNavLoginContainer onClick={() => Router.push("/user/login")}>
     <FooterNavLogin />
     <StyledNavLoginText>Login für alle Funktionen</StyledNavLoginText>
   </StyledNavLoginContainer>
@@ -55,9 +55,9 @@ export const StyledNavNearby = styled(FooterNearby)`
   font-size: 50px;
 `;
 
-const FooterNew = ({ color }) => (
+const FooterNew = ({ color, onClick }) => (
   <FooterNavNew
-    onClick={() => console.log("new POI")}
+    onClick={() => onClick()}
     fill={color ? `${color}` : "var(--color-gray3)"}
   />
 );

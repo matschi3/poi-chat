@@ -135,3 +135,8 @@ export const StyledCardTabItem = styled.span`
 export const StyledCardTabItemLabel = styled.span`
   font-size: var(--size-mediumplus);
 `;
+
+export const StyledBottomSpacer = styled.div`
+  height: var(--header-height);
+  width: 100%;
+`;

@@ -15,15 +15,36 @@ import {
   StyledCardLiDot,
   StyledCardLiIndication,
   StyledCardDivider,
+  StyledBottomSpacer,
 } from "./PoiCard.styled";
 import React, { useState } from "react";
 import Router from "next/router";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function PoiCard({ poi }) {
   const [activeTab, setActiveTab] = useState("info");
+  const [userRole, setUserRole] = useState("user");
 
   const { data: session } = useSession();
+
+  async function checkUserRole(email) {
+    const response = await fetch(`/api/user/${email}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      setUserRole(data.role);
+    } else {
+      return;
+    }
+  }
+  if (session) {
+    const userEmail = session?.user.email;
+    checkUserRole(userEmail);
+  }
 
   async function deleteActivity(activityId) {
     const response = await fetch(`/api/activities/${activityId}`, {
@@ -192,28 +213,22 @@ export default function PoiCard({ poi }) {
                 );
               })}
             </StyledCardUl>
-            {session && (
-              <>
-                <button onClick={signOut}>Sign out</button>
-                <button onClick={deletePoi}>Delete</button>
-              </>
+            {session && userRole === "admin" && (
+              <button onClick={deletePoi}>Delete</button>
             )}
-            {!session && <button onClick={signIn}>Sign in</button>}
           </>
         )}
         {activeTab === "chat" && session && (
-          <>
-            <button onClick={signOut}>Sign out</button>
-            <span>Chat is here, when finished. But you are allowed ✅</span>
-          </>
+          <span>Chat is here, when finished. But you are allowed ✅</span>
         )}
         {activeTab === "chat" && !session && (
-          <>
-            <button onClick={signIn}>Sign in</button>
-            <span>Chat is only for logged in users</span>
-          </>
+          <span>Chat is only for logged in users</span>
         )}
-        {activeTab === "image" && <span>Fotos are here</span>}
+        {activeTab === "image" && session && <span>Fotos are here</span>}
+        {activeTab === "image" && !session && (
+          <span>Fotos are only for logged in users</span>
+        )}
+        <StyledBottomSpacer />
       </StyledCardListContainer>
     </StyledPoiCard>
   );
