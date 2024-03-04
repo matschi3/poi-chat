@@ -14,6 +14,21 @@ export default function PoiBlock({ poi }) {
   const router = useRouter();
   const { data: session } = useSession();
 
+  const timeNow = new Date().getTime();
+  const timeFromData = new Date(poi.updatedAt);
+  const diffInMilliseconds = timeNow - timeFromData;
+  const diffInMinutes = Math.floor(diffInMilliseconds / 1000 / 60);
+  const diffInHours = Math.floor(diffInMilliseconds / 1000 / 60 / 60);
+  const diffInDays = Math.floor(diffInMilliseconds / 1000 / 60 / 60 / 24);
+  let changedAgo;
+  if (diffInMinutes < 60) {
+    changedAgo = `${diffInMinutes} minutes ago`;
+  } else if (diffInHours < 24) {
+    changedAgo = `${diffInHours} hours ago`;
+  } else {
+    changedAgo = `${diffInDays} days ago`;
+  }
+
   async function toggleFavorite(id) {
     try {
       const response = await fetch(
@@ -69,7 +84,9 @@ export default function PoiBlock({ poi }) {
               ? poi.properties[0].description
               : poi.properties[0].description.slice(0, 32) + ".."}
           </StyledBlockText>
-          {/* <StyledBlockLastUpdate>6m ago</StyledBlockLastUpdate> */}
+          {poi.updatedAt !== undefined && (
+            <StyledBlockLastUpdate>{changedAgo}</StyledBlockLastUpdate>
+          )}
         </StyledPoiBlock>
       </StyledBlockBox>
       <button onClick={() => toggleFavorite(poi._id)}>Favorite</button>
