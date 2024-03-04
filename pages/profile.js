@@ -10,7 +10,7 @@ export default function ProfilePage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (session?.status !== "authenticated") {
+    if (!session) {
       router.replace("/");
     }
   }, [session, router]);
