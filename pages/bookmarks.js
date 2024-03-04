@@ -6,11 +6,16 @@ import Header from "@/components/Header";
 import Search from "@/components/Search";
 import Footer from "@/components/Footer";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function BookmarkPage() {
   const [pois, setPois] = useState([]);
   const [searchIsActive, setSearchIsActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [favoriteIds, setFavoriteIds] = useState([]);
+  const [userEmail, setUserEmail] = useState("");
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchPois() {
@@ -18,10 +23,31 @@ export default function BookmarkPage() {
       const fetchedPois = await response.json();
       setPois(fetchedPois);
     }
-    fetchPois();
-  }, []);
+    async function fetchUserFavorites() {
+      const response = await fetch(`/api/user/favorites/${userEmail}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const favs = await response.json();
+        setFavoriteIds(favs);
+      } else {
+        return;
+      }
+    }
+    if (!session) {
+      router.replace("/");
+    } else if (session) {
+      setUserEmail(session?.user.email);
+      fetchPois();
+      if (userEmail !== "") {
+        fetchUserFavorites();
+      }
+    }
+  }, [session, router, userEmail]);
 
-  const { data: session, status } = useSession();
   if (status === "loading") {
     return null;
   }
