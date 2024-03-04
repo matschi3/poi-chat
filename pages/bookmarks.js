@@ -32,7 +32,7 @@ export default function BookmarkPage() {
       });
       if (response.ok) {
         const favs = await response.json();
-        setFavoriteIds(favs);
+        setFavoriteIds(favs.favorites);
       } else {
         return;
       }
@@ -62,13 +62,15 @@ export default function BookmarkPage() {
     setSearchQuery("");
   };
 
+  const favoritePois = pois.filter((poi) => favoriteIds.includes(poi._id));
+
   const renderedPois = searchIsActive
-    ? pois.filter((poi) =>
+    ? favoritePois.filter((poi) =>
         poi.properties?.[0]?.name
           ?.toLowerCase()
           .includes(searchQuery.toLowerCase())
       )
-    : pois;
+    : favoritePois;
 
   return (
     <>
