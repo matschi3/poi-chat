@@ -2,10 +2,19 @@ import Head from "next/head";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSession, signOut } from "next-auth/react";
-import Router from "next/router";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function ProfilePage() {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session?.status !== "authenticated") {
+      router.replace("/");
+    }
+  }, [session, router]);
+
   return (
     <>
       <Head>
@@ -20,12 +29,7 @@ export default function ProfilePage() {
       <Header title="Mein Profil" backButton />
       <main>
         <h1>Profil</h1>
-        {!session && (
-          <div>
-            <p>Bitte logge dich ein, um dein Profil zu sehen.</p>
-            <button onClick={() => Router.push("/user/login")}>Login</button>
-          </div>
-        )}
+        {!session && <></>}
         {session && (
           <div>
             <p>
