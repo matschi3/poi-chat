@@ -10,10 +10,12 @@ import {
 } from "./PoiBlock.styled";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 export default function PoiBlock({ poi }) {
   const router = useRouter();
   const { data: session } = useSession();
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const timeNow = new Date().getTime();
   const timeFromData = new Date(poi.updatedAt);
@@ -30,7 +32,7 @@ export default function PoiBlock({ poi }) {
     changedAgo = `${diffInDays} days ago`;
   }
 
-  async function toggleFavorite(id) {
+  async function isBookmarkedCheck(id) {
     try {
       const response = await fetch(
         `/api/user/favorites/${session.user.email}`,
@@ -42,7 +44,18 @@ export default function PoiBlock({ poi }) {
         throw new Error(`Server responded with status: ${response.status}`);
       }
       const favs = await response.json();
-      let method = favs.favorites.includes(id) ? "DELETE" : "PUT";
+      (await favs.favorites.includes(id))
+        ? setIsBookmarked(true)
+        : setIsBookmarked(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  isBookmarkedCheck(poi._id);
+
+  async function toggleFavorite(id) {
+    try {
+      let method = isBookmarked ? "DELETE" : "PUT";
 
       const updateResponse = await fetch(
         `/api/user/favorites/${session.user.email}`,
@@ -54,15 +67,14 @@ export default function PoiBlock({ poi }) {
           body: JSON.stringify({ poiId: id }),
         }
       );
-      if (method === "DELETE" && router.replace("/bookmarks"));
+      method === "DELETE" && router.replace("/bookmarks");
       if (!updateResponse.ok) {
         throw new Error(
           `Failed to update favorites with status: ${updateResponse.status}`
         );
       }
-      const updatedFavs = await updateResponse.json();
     } catch (error) {
-      return error;
+      console.error(error);
     }
   }
 
