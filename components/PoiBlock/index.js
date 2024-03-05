@@ -6,11 +6,11 @@ import {
   StyledBlockHeading,
   StyledBlockText,
   StyledBlockLastUpdate,
-  AddBookmarkBtn,
 } from "./PoiBlock.styled";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import BookmarkBtn from "@/components/BookmarkBtn";
 
 export default function PoiBlock({ poi }) {
   const router = useRouter();
@@ -81,7 +81,7 @@ export default function PoiBlock({ poi }) {
   return (
     <>
       <StyledBlockBox>
-        <AddBookmarkBtn
+        <BookmarkBtn
           isBookmarked={isBookmarked}
           onClick={() => toggleFavorite(poi._id)}
         />
