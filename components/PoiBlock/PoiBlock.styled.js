@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import AddBokmarkSvg from "../../src/bookmark-add.svg";
+import RemoveBokmarkSvg from "../../src/bookmark-remove.svg";
+import BookmarkedSvg from "../../src/bookmarked.svg";
 
 export const StyledBlockContainer = styled.div`
   position: absolute;
@@ -79,3 +82,19 @@ export const StyledBlockLastUpdate = styled.div`
   border-radius: 4px;
   padding: 0px 4px;
 `;
+
+const AddBookmarkBox = styled.span`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 30px;
+  top: -12px;
+  z-index: 1;
+`;
+
+const AddBookmark = ({ onClick }) => (
+  <AddBookmarkBox onClick={() => onClick()}>
+    <AddBokmarkSvg />
+  </AddBookmarkBox>
+);
+export const AddBookmarkBtn = styled(AddBookmark)``;
