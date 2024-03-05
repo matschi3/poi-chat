@@ -6,6 +6,7 @@ import {
   StyledBlockHeading,
   StyledBlockText,
   StyledBlockLastUpdate,
+  AddBookmarkBtn,
 } from "./PoiBlock.styled";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -67,12 +68,13 @@ export default function PoiBlock({ poi }) {
 
   return (
     <>
-      <StyledBlockBox
-        onClick={() => {
-          router.push(`/poi/${poi._id}`);
-        }}
-      >
-        <StyledPoiBlock>
+      <StyledBlockBox>
+        <AddBookmarkBtn onClick={() => toggleFavorite(poi._id)} />
+        <StyledPoiBlock
+          onClick={() => {
+            router.push(`/poi/${poi._id}`);
+          }}
+        >
           <StyledBlockImage />
           <StyledBlockHeading>
             {poi.properties[0].name.length < 32
@@ -89,7 +91,6 @@ export default function PoiBlock({ poi }) {
           )}
         </StyledPoiBlock>
       </StyledBlockBox>
-      <button onClick={() => toggleFavorite(poi._id)}>Favorite</button>
       <StyledBlockDivider />
     </>
   );
