@@ -81,7 +81,10 @@ export default function PoiBlock({ poi }) {
   return (
     <>
       <StyledBlockBox>
-        <AddBookmarkBtn onClick={() => toggleFavorite(poi._id)} />
+        <AddBookmarkBtn
+          isBookmarked={isBookmarked}
+          onClick={() => toggleFavorite(poi._id)}
+        />
         <StyledPoiBlock
           onClick={() => {
             router.push(`/poi/${poi._id}`);
