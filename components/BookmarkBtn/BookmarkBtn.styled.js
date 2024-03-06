@@ -19,4 +19,7 @@ export const AddBookmarkBox = styled.span`
       opacity: 1;
     }
   }
+  svg > path {
+    stroke-width: 1.4;
+  }
 `;
