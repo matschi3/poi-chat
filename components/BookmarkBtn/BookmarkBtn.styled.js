@@ -7,6 +7,16 @@ export const AddBookmarkBox = styled.span`
   left: 30px;
   top: -12px;
   z-index: 1;
-`;
+  animation: flyIn 1s ease;
 
-/* export const AddBookmarkBtn = styled(AddBookmark)``; */
+  @keyframes flyIn {
+    0% {
+      transform: translateY(+20%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+`;
