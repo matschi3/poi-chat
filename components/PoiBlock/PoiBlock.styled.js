@@ -22,6 +22,19 @@ export const StyledBlockDivider = styled.div`
   border-top: 1px solid var(--color-gray2);
   box-sizing: border-box;
   height: 1px;
+  animation: viewable 2s ease;
+
+  @keyframes viewable {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const StyledBlockBox = styled.div`
@@ -31,6 +44,18 @@ export const StyledBlockBox = styled.div`
   text-align: left;
   font-size: var(--size-mediumsmall);
   color: var(--color-black);
+  animation: flyIn 1s ease;
+
+  @keyframes flyIn {
+    0% {
+      transform: translateY(+20%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 `;
 
 export const StyledPoiBlock = styled.div`
