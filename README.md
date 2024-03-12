@@ -7,5 +7,4 @@ Currently under development. More on this shortly
 [Deployment @ Vercel](https://poi-chat.vercel.app/)
 
 Demo-user:
-
 email: `user@mail.com` Password: `12345`
