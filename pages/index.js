@@ -1,33 +1,29 @@
 import Head from "next/head";
 import PoiBlock from "@/components/PoiBlock/index.js";
 import { StyledBlockContainer } from "@/components/PoiBlock/PoiBlock.styled";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Search from "@/components/Search";
 import AddButton from "@/components/AddButton";
 import Drawer from "@/components/Drawer";
 import Footer from "@/components/Footer";
 import { useSession } from "next-auth/react";
+import useSWR from "swr";
 
 export default function Home() {
-  const [pois, setPois] = useState([]);
   const [searchIsActive, setSearchIsActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [drawerIsActive, setDrawerIsActive] = useState(false);
 
-  useEffect(() => {
-    async function fetchPois() {
-      const response = await fetch("/api/pois");
-      const fetchedPois = await response.json();
-      setPois(fetchedPois);
-    }
-    fetchPois();
-  }, []);
+  const { data: poiData, isLoading, error } = useSWR("/api/pois");
 
   const { data: session, status } = useSession();
   if (status === "loading") {
     return null;
   }
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading POIs</div>;
 
   const toggleSearch = () => {
     setSearchIsActive(!searchIsActive);
@@ -46,13 +42,13 @@ export default function Home() {
     setDrawerIsActive(false);
   };
 
-  const renderedPois = searchIsActive
-    ? pois.filter((poi) =>
+  const filteredPois = searchIsActive
+    ? poiData?.filter((poi) =>
         poi.properties?.[0]?.name
           ?.toLowerCase()
           .includes(searchQuery.toLowerCase())
       )
-    : pois;
+    : poiData;
 
   return (
     <>
@@ -78,12 +74,10 @@ export default function Home() {
           />
         )}
         <StyledBlockContainer $searchIsActive={searchIsActive}>
-          {pois.length < 1 ? (
+          {poiData?.length < 1 ? (
             <h2>Loading</h2>
-          ) : renderedPois.length < 1 ? (
-            <h2>Keine POIs gefunden</h2>
           ) : (
-            renderedPois.map((poi) => <PoiBlock key={poi._id} poi={poi} />)
+            filteredPois?.map((poi) => <PoiBlock key={poi._id} poi={poi} />)
           )}
         </StyledBlockContainer>
         {!session ? (

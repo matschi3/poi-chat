@@ -51,7 +51,9 @@ export default function PoiBlock({ poi }) {
       console.error(error);
     }
   }
-  isBookmarkedCheck(poi._id);
+  if (session) {
+    isBookmarkedCheck(poi._id);
+  }
 
   async function toggleFavorite(id) {
     try {
@@ -77,14 +79,15 @@ export default function PoiBlock({ poi }) {
       console.error(error);
     }
   }
-
   return (
     <>
       <StyledBlockBox>
-        <BookmarkBtn
-          isBookmarked={isBookmarked}
-          onClick={() => toggleFavorite(poi._id)}
-        />
+        {session && (
+          <BookmarkBtn
+            isBookmarked={isBookmarked}
+            onClick={() => toggleFavorite(poi._id)}
+          />
+        )}
         <StyledPoiBlock
           onClick={() => {
             router.push(`/poi/${poi._id}`);
@@ -92,16 +95,16 @@ export default function PoiBlock({ poi }) {
         >
           <StyledBlockImage />
           <StyledBlockHeading>
-            {poi.properties[0].name.length < 32
+            {poi?.properties[0].name.length < 32
               ? poi.properties[0].name
               : poi.properties[0].name.slice(0, 32) + ".."}
           </StyledBlockHeading>
           <StyledBlockText>
-            {poi.properties[0].description.length < 32
+            {poi?.properties[0].description.length < 32
               ? poi.properties[0].description
               : poi.properties[0].description.slice(0, 32) + ".."}
           </StyledBlockText>
-          {poi.updatedAt !== undefined && (
+          {poi?.updatedAt !== undefined && (
             <StyledBlockLastUpdate>{changedAgo}</StyledBlockLastUpdate>
           )}
         </StyledPoiBlock>
