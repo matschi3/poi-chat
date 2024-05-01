@@ -1,4 +1,3 @@
-import { get } from "mongoose";
 import dbConnect from "../../../db/connect.js";
 import Geometry from "../../../db/models/Geometry.js";
 import { getToken } from "next-auth/jwt";
