@@ -1,8 +1,10 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { StyledMap } from "./Map.styled";
+import { useRouter } from "next/router";
 
 export default function Map({ markers }) {
+  const router = useRouter();
   return (
     <StyledMap>
       <MapContainer
@@ -17,7 +19,10 @@ export default function Map({ markers }) {
         ></TileLayer>
         {markers.map((marker) => (
           <Marker key={marker.id} position={[marker.lat, marker.lng]}>
-            <Popup>{marker.name}</Popup>
+            <Popup>
+              {marker.name}{" "}
+              <p onClick={() => router.push(`/poi/${marker.id}`)}>Zur Seite</p>
+            </Popup>
           </Marker>
         ))}
       </MapContainer>
