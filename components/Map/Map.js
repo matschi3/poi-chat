@@ -6,9 +6,24 @@ import L from "leaflet";
 import retina from "leaflet/dist/images/marker-icon-2x.png";
 import icon from "leaflet/dist/images/marker-icon.png";
 import shadow from "leaflet/dist/images/marker-shadow.png";
+import { useEffect, useRef } from "react";
 
-export default function Map({ markers }) {
+export default function Map({ mapCenter, markers }) {
   const router = useRouter();
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    // Re-center the map when `mapCenter` changes
+    if (mapRef.current) {
+      mapRef.current.setView([mapCenter.lat, mapCenter.lng], 13);
+    }
+  }, [mapCenter]);
+
+  // Default map center for undefined (when no user location is available on db)
+  const mapCenterArray =
+    mapCenter?.lat === undefined
+      ? [50.7356878, 7.1006226, 21]
+      : [mapCenter.lat, mapCenter.lng];
 
   // Fix for broken marker icons
   delete L.Icon.Default.prototype._getIconUrl;
@@ -21,8 +36,9 @@ export default function Map({ markers }) {
   return (
     <StyledMap>
       <MapContainer
+        ref={mapRef}
         className="mymap"
-        center={[50.74238760309213, 7.103948755048992]}
+        center={mapCenterArray}
         zoom={13}
         scrollWheelZoom={false}
       >
