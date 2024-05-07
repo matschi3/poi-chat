@@ -1,8 +1,23 @@
 import Map from "@/components/Map";
 import useSWR from "swr";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function NearbyPage() {
+  const [userPosition, setUserPosition] = useState(null);
   const { data: poiData, isLoading, error } = useSWR("/api/pois");
+  const { data: session } = useSession();
+  const userEmail = session?.user?.email;
+  const { data: userCoordinates } = useSWR(
+    userEmail ? `/api/user/coordinates/${userEmail}` : null
+  );
+
+  useEffect(() => {
+    if (userCoordinates) {
+      setUserPosition(userCoordinates?.lastCoordinates);
+    }
+  }, [userCoordinates]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading POIs</div>;
@@ -22,5 +37,33 @@ export default function NearbyPage() {
       }
     })
     .filter((marker) => marker !== undefined);
-  return <Map markers={markers} />;
+
+  function getCurrentPosition() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setUserPosition({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
+  return (
+    <>
+      <button
+        onClick={(event) => {
+          event.preventDefault();
+          getCurrentPosition();
+        }}
+      >
+        {userPosition === null
+          ? "Aktuellen Standort verwenden"
+          : "Standort verwendet! Aktualisieren."}
+      </button>
+      <Map mapCenter={userPosition} markers={markers} />
+    </>
+  );
 }
