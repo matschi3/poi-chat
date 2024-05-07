@@ -59,7 +59,7 @@ export default function NearbyPage() {
           getCurrentPosition();
         }}
       >
-        {userPosition === null
+        {userPosition === userCoordinates?.lastCoordinates
           ? "Aktuellen Standort verwenden"
           : "Standort verwendet! Aktualisieren."}
       </button>
